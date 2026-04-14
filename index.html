@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FZ20 Photography Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f0e8;
+    --accent: #e8440a;
+    --gold: #c9a227;
+    --steel: #3a4a5c;
+    --mist: #ddd8ce;
+    --dim: #888070;
+  }
+
+- { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+font-family: ‘Syne’, sans-serif;
+background: var(–paper);
+color: var(–ink);
+min-height: 100vh;
+}
+
+/* HEADER */
+header {
+background: var(–ink);
+color: var(–paper);
+padding: 2.5rem 2rem 2rem;
+position: relative;
+overflow: hidden;
+}
+header::before {
+content: ‘’;
+position: absolute;
+top: -40px; right: -40px;
+width: 200px; height: 200px;
+border: 3px solid var(–accent);
+border-radius: 50%;
+opacity: 0.15;
+}
+header::after {
+content: ‘’;
+position: absolute;
+bottom: -60px; left: 30%;
+width: 300px; height: 300px;
+border: 2px solid var(–gold);
+border-radius: 50%;
+opacity: 0.08;
+}
+.header-tag {
+font-family: ‘Space Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.2em;
+color: var(–accent);
+text-transform: uppercase;
+margin-bottom: 0.6rem;
+}
+header h1 {
+font-size: clamp(1.8rem, 5vw, 3rem);
+font-weight: 800;
+line-height: 1.05;
+margin-bottom: 0.5rem;
+}
+header h1 span { color: var(–accent); }
+.header-sub {
+font-family: ‘Space Mono’, monospace;
+font-size: 0.75rem;
+color: #aaa;
+margin-top: 0.8rem;
+}
+
+/* NAV */
+nav {
+background: var(–steel);
+display: flex;
+flex-wrap: wrap;
+gap: 0;
+position: sticky;
+top: 0;
+z-index: 100;
+border-bottom: 3px solid var(–accent);
+}
+nav button {
+font-family: ‘Space Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.08em;
+color: #ccc;
+background: none;
+border: none;
+padding: 0.85rem 1rem;
+cursor: pointer;
+text-transform: uppercase;
+transition: all 0.2s;
+border-right: 1px solid rgba(255,255,255,0.08);
+}
+nav button:hover { background: rgba(255,255,255,0.08); color: white; }
+nav button.active { background: var(–accent); color: white; }
+
+/* MAIN */
+main { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+.section { display: none; }
+.section.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* SECTION HEADERS */
+.sec-title {
+font-size: 1.6rem;
+font-weight: 800;
+margin-bottom: 0.3rem;
+line-height: 1.1;
+}
+.sec-title span { color: var(–accent); }
+.sec-sub {
+font-family: ‘Space Mono’, monospace;
+font-size: 0.7rem;
+color: var(–dim);
+letter-spacing: 0.1em;
+text-transform: uppercase;
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 2px solid var(–mist);
+}
+
+/* CARDS */
+.card {
+background: white;
+border: 1.5px solid var(–mist);
+border-radius: 4px;
+padding: 1.5rem;
+margin-bottom: 1.2rem;
+position: relative;
+}
+.card-accent { border-left: 4px solid var(–accent); }
+.card-gold { border-left: 4px solid var(–gold); }
+.card-steel { border-left: 4px solid var(–steel); }
+
+.card h3 {
+font-size: 1rem;
+font-weight: 800;
+margin-bottom: 0.6rem;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+.card h3 .badge {
+font-family: ‘Space Mono’, monospace;
+font-size: 0.6rem;
+background: var(–ink);
+color: var(–paper);
+padding: 0.15rem 0.4rem;
+border-radius: 2px;
+letter-spacing: 0.05em;
+font-weight: 400;
+}
+.card h3 .badge.red { background: var(–accent); }
+.card h3 .badge.gold { background: var(–gold); }
+.card p { font-size: 0.88rem; line-height: 1.7; color: #333; }
+.card p + p { margin-top: 0.6rem; }
+
+/* EXPOSURE TRIANGLE */
+.triangle-viz {
+display: flex;
+gap: 1rem;
+margin: 1.2rem 0;
+flex-wrap: wrap;
+}
+.triangle-item {
+flex: 1;
+min-width: 160px;
+background: var(–ink);
+color: var(–paper);
+padding: 1.2rem;
+border-radius: 4px;
+text-align: center;
+}
+.triangle-item .t-icon { font-size: 1.8rem; margin-bottom: 0.4rem; }
+.triangle-item .t-name {
+font-weight: 800;
+font-size: 0.95rem;
+color: var(–accent);
+margin-bottom: 0.3rem;
+}
+.triangle-item .t-unit {
+font-family: ‘Space Mono’, monospace;
+font-size: 0.65rem;
+color: #aaa;
+margin-bottom: 0.5rem;
+}
+.triangle-item p { font-size: 0.78rem; line-height: 1.6; color: #ccc; }
+
+/* MODE DIAL */
+.mode-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+gap: 1rem;
+margin: 1.2rem 0;
+}
+.mode-card {
+background: white;
+border: 1.5px solid var(–mist);
+border-radius: 4px;
+padding: 1.2rem;
+cursor: pointer;
+transition: all 0.2s;
+}
+.mode-card:hover, .mode-card.open { border-color: var(–accent); box-shadow: 0 4px 16px rgba(232,68,10,0.1); }
+.mode-card .m-dial {
+font-family: ‘Space Mono’, monospace;
+font-size: 1.4rem;
+font-weight: 700;
+color: var(–accent);
+margin-bottom: 0.4rem;
+}
+.mode-card .m-name { font-weight: 800; font-size: 0.9rem; margin-bottom: 0.3rem; }
+.mode-card .m-short { font-size: 0.78rem; color: var(–dim); line-height: 1.5; }
+.mode-detail {
+display: none;
+margin-top: 0.8rem;
+padding-top: 0.8rem;
+border-top: 1px solid var(–mist);
+font-size: 0.78rem;
+line-height: 1.7;
+color: #333;
+}
+.mode-card.open .mode-detail { display: block; }
+
+/* SETTINGS TABLE */
+.settings-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1rem;
+margin: 1rem 0;
+}
+@media (max-width: 600px) { .settings-grid { grid-template-columns: 1fr; } }
+.setting-item {
+background: white;
+border: 1.5px solid var(–mist);
+border-radius: 4px;
+padding: 1rem;
+}
+.setting-item .s-label {
+font-family: ‘Space Mono’, monospace;
+font-size: 0.65rem;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+color: var(–dim);
+margin-bottom: 0.3rem;
+}
+.setting-item .s-value {
+font-weight: 800;
+font-size: 0.95rem;
+color: var(–accent);
+margin-bottom: 0.4rem;
+}
+.setting-item p { font-size: 0.78rem; line-height: 1.6; color: #444; }
+
+/* SHOOTING PRESETS */
+.preset-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.2rem; }
+.preset-tab {
+font-family: ‘Space Mono’, monospace;
+font-size: 0.65rem;
+text-transform: uppercase;
+letter-spacing: 0.08em;
+padding: 0.4rem 0.8rem;
+border: 1.5px solid var(–mist);
+border-radius: 2px;
+cursor: pointer;
+background: white;
+color: var(–dim);
+transition: all 0.15s;
+}
+.preset-tab:hover { border-color: var(–steel); color: var(–ink); }
+.preset-tab.active { background: var(–steel); color: white; border-color: var(–steel); }
+
+.preset-panel { display: none; }
+.preset-panel.active { display: block; animation: fadeIn 0.2s ease; }
+
+.preset-row {
+display: flex;
+align-items: baseline;
+gap: 0.8rem;
+padding: 0.7rem 0;
+border-bottom: 1px solid var(–mist);
+font-size: 0.85rem;
+}
+.preset-row:last-child { border-bottom: none; }
+.preset-key {
+font-family: ‘Space Mono’, monospace;
+font-size: 0.7rem;
+color: var(–dim);
+min-width: 110px;
+text-transform: uppercase;
+letter-spacing: 0.06em;
+}
+.preset-val {
+font-weight: 700;
+color: var(–accent);
+min-width: 120px;
+font-family: ‘Space Mono’, monospace;
+font-size: 0.78rem;
+}
+.preset-why { font-size: 0.78rem; color: #555; line-height: 1.5; }
+
+/* 30 DAY PLAN */
+.week-block { margin-bottom: 2rem; }
+.week-header {
+display: flex;
+align-items: center;
+gap: 1rem;
+margin-bottom: 1rem;
+cursor: pointer;
+}
+.week-num {
+font-family: ‘Space Mono’, monospace;
+font-size: 0.65rem;
+background: var(–ink);
+color: var(–paper);
+padding: 0.3rem 0.7rem;
+border-radius: 2px;
+white-space: nowrap;
+letter-spacing: 0.05em;
+}
+.week-title { font-size: 1.1rem; font-weight: 800; }
+.week-toggle {
+margin-left: auto;
+font-family: ‘Space Mono’, monospace;
+font-size: 0.7rem;
+color: var(–dim);
+background: none;
+border: none;
+cursor: pointer;
+}
+.week-days { display: none; }
+.week-days.open { display: block; }
+
+.day-row {
+display: grid;
+grid-template-columns: 60px 1fr 1fr;
+gap: 0.8rem;
+padding: 0.8rem;
+border: 1.5px solid var(–mist);
+border-radius: 4px;
+margin-bottom: 0.6rem;
+background: white;
+font-size: 0.82rem;
+align-items: start;
+}
+.day-num {
+font-family: ‘Space Mono’, monospace;
+font-size: 0.75rem;
+font-weight: 700;
+color: var(–accent);
+}
+.day-mission { font-weight: 700; line-height: 1.4; }
+.day-mission small { display: block; font-weight: 400; color: var(–dim); font-size: 0.75rem; margin-top: 0.2rem; }
+.day-drill { font-size: 0.76rem; color: #555; line-height: 1.5; }
+
+/* MISTAKES */
+.mistake-list { counter-reset: mistakes; }
+.mistake-item {
+display: flex;
+gap: 1rem;
+padding: 1rem;
+border: 1.5px solid var(–mist);
+border-radius: 4px;
+margin-bottom: 0.8rem;
+background: white;
+align-items: flex-start;
+}
+.mistake-num {
+font-family: ‘Space Mono’, monospace;
+font-size: 1rem;
+font-weight: 700;
+color: var(–mist);
+min-width: 32px;
+}
+.mistake-content h4 { font-size: 0.9rem; font-weight: 800; margin-bottom: 0.3rem; }
+.mistake-content .wrong { font-size: 0.8rem; color: #c0392b; margin-bottom: 0.3rem; }
+.mistake-content .fix { font-size: 0.8rem; color: #27ae60; line-height: 1.5; }
+
+/* WORKFLOW */
+.workflow-steps { counter-reset: steps; }
+.workflow-step {
+display: flex;
+gap: 1rem;
+margin-bottom: 0.8rem;
+align-items: flex-start;
+}
+.step-num {
+background: var(–steel);
+color: white;
+font-family: ‘Space Mono’, monospace;
+font-size: 0.75rem;
+font-weight: 700;
+width: 32px;
+height: 32px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+margin-top: 2px;
+}
+.step-content { flex: 1; }
+.step-content strong { font-size: 0.88rem; display: block; margin-bottom: 0.2rem; }
+.step-content p { font-size: 0.8rem; color: #555; line-height: 1.6; }
+
+/* CALLOUT */
+.callout {
+background: var(–ink);
+color: var(–paper);
+padding: 1.2rem 1.5rem;
+border-radius: 4px;
+margin: 1.2rem 0;
+font-size: 0.85rem;
+line-height: 1.7;
+}
+.callout strong { color: var(–gold); }
+.callout.warn { background: #fff3e0; color: var(–ink); border-left: 4px solid var(–gold); }
+.callout.warn strong { color: #b7590a; }
+
+/* SPEC TABLE */
+.spec-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.82rem; }
+.spec-table th {
+background: var(–steel);
+color: white;
+text-align: left;
+padding: 0.6rem 0.8rem;
+font-family: ‘Space Mono’, monospace;
+font-size: 0.65rem;
+text-transform: uppercase;
+letter-spacing: 0.08em;
+font-weight: 400;
+}
+.spec-table td { padding: 0.55rem 0.8rem; border-bottom: 1px solid var(–mist); }
+.spec-table tr:nth-child(even) td { background: #faf8f5; }
+.spec-table .s-key { font-weight: 700; color: var(–ink); }
+.spec-table .s-val { font-family: ‘Space Mono’, monospace; color: var(–accent); }
+.spec-table .s-note { color: var(–dim); font-size: 0.76rem; }
+
+/* PROGRESS TRACKER */
+.progress-section {
+background: white;
+border: 1.5px solid var(–mist);
+border-radius: 4px;
+padding: 1.5rem;
+margin-bottom: 1.5rem;
+}
+.progress-section h3 { font-size: 0.9rem; font-weight: 800; margin-bottom: 1rem; }
+.skill-bars { display: flex; flex-direction: column; gap: 0.7rem; }
+.skill-bar { }
+.skill-bar-label {
+display: flex;
+justify-content: space-between;
+font-family: ‘Space Mono’, monospace;
+font-size: 0.65rem;
+text-transform: uppercase;
+color: var(–dim);
+margin-bottom: 0.3rem;
+letter-spacing: 0.06em;
+}
+.skill-bar-track {
+height: 8px;
+background: var(–mist);
+border-radius: 4px;
+overflow: hidden;
+}
+.skill-bar-fill {
+height: 100%;
+background: var(–accent);
+border-radius: 4px;
+transition: width 1s ease;
+}
+
+.tag { display: inline-block; font-family: ‘Space Mono’, monospace; font-size: 0.65rem; padding: 0.2rem 0.5rem; border-radius: 2px; margin: 0.15rem; letter-spacing: 0.05em; }
+.tag-steel { background: var(–steel); color: white; }
+.tag-accent { background: var(–accent); color: white; }
+.tag-outline { border: 1.5px solid var(–mist); color: var(–dim); }
+
+footer {
+text-align: center;
+padding: 2rem;
+font-family: ‘Space Mono’, monospace;
+font-size: 0.65rem;
+color: var(–dim);
+border-top: 1px solid var(–mist);
+letter-spacing: 0.08em;
+}
+
+@media (max-width: 600px) {
+.day-row { grid-template-columns: 50px 1fr; }
+.day-drill { grid-column: 2; }
+.triangle-viz { flex-direction: column; }
+}
+</style>
+
+</head>
+<body>
+
+<header>
+  <div class="header-tag">Panasonic Lumix DMC-FZ20 · Urban Photography Masterclass</div>
+  <h1>Master the <span>FZ20</span><br>From Zero to Manual</h1>
+  <div class="header-sub">Cleveland / Chicago · Architecture · Motion · Urban Wildlife · 30-Day Program</div>
+</header>
+
+<nav id="nav">
+  <button class="active" onclick="showSection('camera')">① Camera System</button>
+  <button onclick="showSection('modes')">② Mode Dial</button>
+  <button onclick="showSection('settings')">③ Settings</button>
+  <button onclick="showSection('presets')">④ Shooting Presets</button>
+  <button onclick="showSection('plan')">⑤ 30-Day Plan</button>
+  <button onclick="showSection('mistakes')">⑥ Mistakes</button>
+</nav>
+
+<main>
+
+<!-- ===== SECTION 1: CAMERA SYSTEM ===== -->
+
+<div class="section active" id="camera">
+  <div class="sec-title">Your <span>FZ20</span> — Full System Breakdown</div>
+  <div class="sec-sub">Hardware specs · Core concepts · How it actually works</div>
+
+  <div class="callout">
+    <strong>What you're working with:</strong> The FZ20 is a 2004 bridge camera with a 5MP CCD sensor (1/2.5"), a genuine Leica DC Vario-Elmarit 12× optical zoom lens (35–420mm equivalent), and a constant <strong>f/2.8 maximum aperture across the entire zoom range</strong>. This last point is rare and powerful — most zoom lenses lose light as you zoom in. Yours doesn't.
+  </div>
+
+  <table class="spec-table">
+    <tr><th>Spec</th><th>Value</th><th>What it means for you</th></tr>
+    <tr><td class="s-key">Sensor</td><td class="s-val">1/2.5" CCD, 5MP</td><td class="s-note">Good in daylight; expect noise above ISO 200</td></tr>
+    <tr><td class="s-key">Max Resolution</td><td class="s-val">2560 × 1920px</td><td class="s-note">Fine for prints up to ~8×10"</td></tr>
+    <tr><td class="s-key">Lens</td><td class="s-val">Leica 12× / f/2.8</td><td class="s-note">Constant f/2.8 is exceptional for a zoom</td></tr>
+    <tr><td class="s-key">Focal Length</td><td class="s-val">35–420mm equiv.</td><td class="s-note">Wide (35) to serious telephoto (420)</td></tr>
+    <tr><td class="s-key">ISO Range</td><td class="s-val">ISO 80–400</td><td class="s-note">Stick to ISO 80–200 for clean shots</td></tr>
+    <tr><td class="s-key">Shutter Speed</td><td class="s-val">8s – 1/2000s</td><td class="s-note">Covers slow motion blur to fast freeze</td></tr>
+    <tr><td class="s-key">Aperture</td><td class="s-val">f/2.8 – f/8</td><td class="s-note">Limited range — depth of field control is subtle</td></tr>
+    <tr><td class="s-key">OIS</td><td class="s-val">Mega OIS (optical)</td><td class="s-note">Reduces blur from hand-shake; not motion blur</td></tr>
+    <tr><td class="s-key">Macro</td><td class="s-val">From 5cm</td><td class="s-note">Very close focus capability</td></tr>
+    <tr><td class="s-key">Viewfinder</td><td class="s-val">EVF + 2" LCD</td><td class="s-note">Use EVF outdoors for accuracy</td></tr>
+  </table>
+
+  <div class="sec-title" style="font-size:1.1rem; margin: 1.8rem 0 0.3rem;">The Exposure <span>Triangle</span></div>
+  <p style="font-size:0.85rem; color:var(--dim); margin-bottom:0.8rem;">Every photo is controlled by three settings that trade off against each other.</p>
+
+  <div class="triangle-viz">
+    <div class="triangle-item">
+      <div class="t-icon">⬡</div>
+      <div class="t-name">Aperture</div>
+      <div class="t-unit">f/2.8 → f/8</div>
+      <p>Controls how wide the lens opens. <strong style="color:var(--gold)">Lower f-number = more light + shallower depth of field.</strong> f/2.8 blurs backgrounds. f/8 keeps everything sharp. On the FZ20, the range is narrow — don't expect extreme blur like a DSLR.</p>
+    </div>
+    <div class="triangle-item">
+      <div class="t-icon">⏱</div>
+      <div class="t-name">Shutter Speed</div>
+      <div class="t-unit">8s → 1/2000s</div>
+      <p>Controls how long the sensor is exposed. <strong style="color:var(--gold)">Faster = freezes motion. Slower = blurs motion.</strong> 1/500s+ freezes birds. 1/30s or slower creates motion blur on trains. Below 1/60s, use a surface or tripod.</p>
+    </div>
+    <div class="triangle-item">
+      <div class="t-icon">◈</div>
+      <div class="t-name">ISO</div>
+      <div class="t-unit">80 → 400</div>
+      <p>Controls sensor sensitivity to light. <strong style="color:var(--gold)">Higher ISO = brighter image + more grain (noise).</strong> On the FZ20's small CCD, ISO 400 is noticeably grainy. Default to ISO 80 outdoors, ISO 200 indoors.</p>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <strong>Critical FZ20 limitation:</strong> The CCD sensor in this camera produces heavy color noise at ISO 400. Your best images will almost always be shot at ISO 80 or ISO 100. In low light, compensate by opening to f/2.8 and slowing the shutter — not by raising ISO.
+  </div>
+
+  <div class="card card-accent" style="margin-top:1.5rem;">
+    <h3>Zoom & Image Compression <span class="badge">IMPORTANT</span></h3>
+    <p>The FZ20 has <strong>12× optical zoom</strong> (35–420mm equivalent) and <strong>4× digital zoom</strong>. Only use optical zoom. Digital zoom crops and degrades the image — it's the same as cropping in software afterward, but worse.</p>
+    <p>When you zoom in telephoto (toward 420mm), two things happen: (1) subjects appear magnified, and (2) the background appears compressed — buildings look stacked, distances look smaller. This is called <strong>telephoto compression</strong> and is a creative tool for urban/architecture shots.</p>
+    <p>At wide angle (35mm), the opposite happens — spaces look larger, lines converge dramatically (good for architecture). This is why your hallway shots look different depending on zoom position.</p>
+  </div>
+
+  <div class="card card-gold">
+    <h3>Metering — How the Camera Reads Light</h3>
+    <p>The FZ20 uses <strong>evaluative/multi-zone metering</strong> by default: it samples multiple areas of the frame and averages them to set exposure. This works well for evenly lit scenes.</p>
+    <p><strong>Problem scenario:</strong> Shooting a building against bright sky — the camera sees the bright sky and underexposes your building to compensate. Fix this with <strong>exposure compensation</strong> (the +/- button). Add +1 to +2 EV when shooting dark subjects against bright backgrounds.</p>
+    <p>You can also use <strong>spot metering</strong> on the FZ20 via the menu — this meters only the center of the frame. Useful when your subject has very different brightness from the surroundings.</p>
+  </div>
+
+  <div class="card card-steel">
+    <h3>Focus Modes on the FZ20</h3>
+    <p><strong>AF (Autofocus):</strong> Camera focuses automatically when you half-press shutter. The default 9-area AF works well for most subjects. For moving subjects, this may hunt (search) and miss.</p>
+    <p><strong>MF (Manual Focus):</strong> You control focus via the thumb dial. The EVF/LCD shows a magnified preview to aid focus. Use for macro, architecture through glass, or when AF is confused by low contrast.</p>
+    <p><strong>One-Shot AF:</strong> In MF mode, you can slide the focus switch down to get a single AF lock. This is the best of both worlds — focus where you want, then lock it.</p>
+    <p><strong>Focus lock trick:</strong> In AF mode, half-press the shutter to lock focus on your subject, then recompose and fully press. Essential for off-center subjects.</p>
+  </div>
+
+  <div class="card card-accent">
+    <h3>White Balance</h3>
+    <p>Light has color temperature. Daylight is blue-white (~5500K). Tungsten bulbs are orange (~3200K). Fluorescent lights are greenish. Auto White Balance (AWB) guesses and corrects this.</p>
+    <p><strong>When AWB fails:</strong> At sunset, AWB will try to neutralize the warm tones you actually want. Set WB to "Daylight" or "Cloudy" to preserve warm golden light. For architecture under artificial lighting, AWB usually creates color casts — try the "Incandescent" or "Fluorescent" preset.</p>
+    <p>On the FZ20: MENU → White Balance → choose preset. Cloudy (approximately 6500K) adds warmth. Daylight is neutral. Incandescent removes orange casts.</p>
+  </div>
+</div>
+
+<!-- ===== SECTION 2: MODES ===== -->
+
+<div class="section" id="modes">
+  <div class="sec-title">Mode <span>Dial</span> — Every Mode Explained</div>
+  <div class="sec-sub">What each mode does internally · When to use it · What to practice</div>
+
+  <p style="font-size:0.85rem; color:#555; margin-bottom:1.2rem;">Click any mode card to expand details.</p>
+
+  <div class="mode-grid">
+    <div class="mode-card" onclick="toggleMode(this)">
+      <div class="m-dial">AUTO</div>
+      <div class="m-name">Full Auto</div>
+      <div class="m-short">Camera controls everything.</div>
+      <div class="mode-detail">
+        <strong>What it does:</strong> The camera sets aperture, shutter speed, ISO, white balance, focus, and flash. You have no control over any exposure parameter.<br><br>
+        <strong>When to use:</strong> Honestly — almost never as a learning photographer. It's fine for snapshots, but it teaches you nothing and often makes bad decisions (like firing the flash when you don't want it).<br><br>
+        <strong>One legitimate use:</strong> Handing the camera to someone else to take a photo of you.
+      </div>
+    </div>
+
+```
+<div class="mode-card" onclick="toggleMode(this)">
+  <div class="m-dial">P</div>
+  <div class="m-name">Program AE</div>
+  <div class="m-short">Camera picks exposure, you pick everything else.</div>
+  <div class="mode-detail">
+    <strong>What it does:</strong> The camera automatically selects a shutter speed and aperture combination for correct exposure. You control ISO, white balance, flash, metering mode, and exposure compensation.<br><br>
+    <strong>Program Shift:</strong> In P mode on the FZ20, you can rotate the dial to shift between equivalent exposures (e.g., faster shutter + wider aperture). This gives partial control.<br><br>
+    <strong>When to use:</strong> When light is changing rapidly (street photography, event shooting) and you need speed. It's also the best mode to use while you're learning metering and white balance without worrying about exposure yet.<br><br>
+    <strong>Practice drill:</strong> Walk around your school and shoot in P mode, but manually set white balance and ISO 80. Study the shutter/aperture the camera chooses. Start recognizing patterns.
+  </div>
+</div>
+
+<div class="mode-card" onclick="toggleMode(this)">
+  <div class="m-dial">A</div>
+  <div class="m-name">Aperture Priority</div>
+  <div class="m-short">You set aperture. Camera sets shutter.</div>
+  <div class="mode-detail">
+    <strong>What it does:</strong> You choose the aperture (f/2.8 to f/8). The camera calculates the shutter speed needed for correct exposure. ISO stays at what you set.<br><br>
+    <strong>Why it matters:</strong> Aperture controls depth of field — how much of the scene is in focus. f/2.8 = shallow focus (background blurs). f/8 = deep focus (everything sharp).<br><br>
+    <strong>On the FZ20:</strong> The aperture range is narrow (f/2.8–f/8), so depth of field differences are subtle. You'll see more effect at longer focal lengths (zoomed in).<br><br>
+    <strong>When to use:</strong>
+    <ul style="margin-left:1rem; margin-top:0.4rem; font-size:0.78rem; line-height:1.8;">
+      <li>Architecture: f/5.6–f/8 for maximum sharpness across the frame</li>
+      <li>Portraits: f/2.8 for subject separation</li>
+      <li>Pigeons/wildlife: f/4–f/5.6 to keep subject sharp while softening background</li>
+    </ul><br>
+    <strong>Practice drill:</strong> Find a hallway. Shoot the same frame at f/2.8, f/4, f/5.6, f/8. Compare depth of field changes at wide and telephoto zoom positions.
+  </div>
+</div>
+
+<div class="mode-card" onclick="toggleMode(this)">
+  <div class="m-dial">S</div>
+  <div class="m-name">Shutter Priority</div>
+  <div class="m-short">You set shutter. Camera sets aperture.</div>
+  <div class="mode-detail">
+    <strong>What it does:</strong> You choose the shutter speed. The camera selects the aperture. You control motion — whether it's frozen or blurred.<br><br>
+    <strong>When to use:</strong>
+    <ul style="margin-left:1rem; margin-top:0.4rem; font-size:0.78rem; line-height:1.8;">
+      <li>Trains/motion blur: 1/30s–1/8s (pan with the train)</li>
+      <li>Freeze birds in flight: 1/1000s–1/2000s</li>
+      <li>Street motion: 1/500s freezes walkers</li>
+      <li>Light trails (car headlights): 4–8 seconds on a surface</li>
+      <li>Water texture: 1/500s+ freezes spray; 1/30s or slower silks it</li>
+    </ul><br>
+    <strong>Watch out:</strong> If your chosen shutter speed requires an aperture smaller than f/8 or wider than f/2.8, the image will be over/underexposed. The camera will warn you. Adjust ISO or shutter speed.<br><br>
+    <strong>Practice drill:</strong> Find a busy street or hallway. Shoot passing subjects at 1/1000s (frozen), 1/125s (slightly sharp), and 1/30s (blurred). Understand what each looks like.
+  </div>
+</div>
+
+<div class="mode-card" onclick="toggleMode(this)">
+  <div class="m-dial">M</div>
+  <div class="m-name">Full Manual</div>
+  <div class="m-short">You control aperture AND shutter speed.</div>
+  <div class="mode-detail">
+    <strong>What it does:</strong> You set both aperture and shutter speed. The camera's only job is to show you an exposure meter (a bar that tells you if your image will be over or underexposed). You interpret it and adjust.<br><br>
+    <strong>The meter:</strong> On the FZ20's LCD/EVF, you'll see an exposure bar with 0 in the center. If the indicator is on the + side, you're overexposing. If it's on the -, you're underexposing. Aim for 0 as a starting point, then adjust for creative intent.<br><br>
+    <strong>When to use:</strong>
+    <ul style="margin-left:1rem; margin-top:0.4rem; font-size:0.78rem; line-height:1.8;">
+      <li>Consistently lit scenes (golden hour, overcast days)</li>
+      <li>When you want the exact same exposure across multiple shots</li>
+      <li>Night/low light where camera guesses wrong</li>
+      <li>Architecture with large bright windows (manual lets you expose for the interior)</li>
+    </ul><br>
+    <strong>Practice workflow in M:</strong><br>
+    1. Set ISO 80<br>
+    2. Set aperture for depth of field intent<br>
+    3. Adjust shutter until meter reads 0<br>
+    4. Evaluate image and fine-tune
+  </div>
+</div>
+
+<div class="mode-card" onclick="toggleMode(this)">
+  <div class="m-dial">🌸</div>
+  <div class="m-name">Macro Mode</div>
+  <div class="m-short">Close-up focus from 5cm.</div>
+  <div class="mode-detail">
+    <strong>What it does:</strong> Overrides the normal minimum focus distance and allows the camera to focus on subjects as close as 5cm (about 2 inches) from the lens. Without macro mode, the lens cannot focus at close range.<br><br>
+    <strong>Focus behavior change:</strong> In macro mode, the camera optimizes AF for very close distances. It will struggle to focus on distant subjects. The depth of field at macro distances is extremely shallow — a few millimeters — meaning critical focus placement matters enormously.<br><br>
+    <strong>When to use:</strong>
+    <ul style="margin-left:1rem; margin-top:0.4rem; font-size:0.78rem; line-height:1.8;">
+      <li>Architectural details: bolts, textures, lettering, patterns</li>
+      <li>Urban texture: worn paint, rust, concrete grain</li>
+      <li>Insects, flowers, any small subject</li>
+      <li>Creating abstract images from large structures</li>
+    </ul><br>
+    <strong>Important:</strong> Use wide zoom (near 35mm) for macro — the minimum focus distance increases when zoomed in. At wide angle + macro mode, you can get very close and fill the frame.<br><br>
+    <strong>Stabilization matters here:</strong> At close focus distances, any camera movement is magnified. Brace against a wall or set camera on a surface. OIS helps but isn't enough for very long exposures.
+  </div>
+</div>
+
+<div class="mode-card" onclick="toggleMode(this)">
+  <div class="m-dial">SCN</div>
+  <div class="m-name">Scene Modes</div>
+  <div class="m-short">Camera presets for specific situations.</div>
+  <div class="mode-detail">
+    <strong>Portrait Mode:</strong> Slightly opens aperture (toward f/2.8) to blur the background. Softens skin tones. Useful for subjects against cluttered backgrounds. On the FZ20 the blur effect is mild.<br><br>
+    <strong>Scenery/Landscape Mode:</strong> Sets a small aperture (f/8) for maximum depth of field. Saturates greens and blues. Good for skylines and wide architecture shots where you want everything sharp.<br><br>
+    <strong>Night Mode:</strong> Uses slow shutter speeds (often 1/4s to 2s) and disables or softens flash. Designed for city lights, building exteriors at night. You need a stable surface — hand-holding will blur. Great for Cleveland/Chicago night skylines.<br><br>
+    <strong>Night Portrait Mode:</strong> Fires flash to expose the person while keeping a slow shutter to capture background light. The flash freezes your subject but the slow shutter captures ambient light behind them.<br><br>
+    <strong>Sport Mode:</strong> Prioritizes fast shutter speeds (1/500s+) to freeze motion. Uses burst shooting. Good for trains, birds, fast street action. The camera will raise ISO if it needs to.<br><br>
+    <strong>When to use scene modes:</strong> When you need a quick result and know the scene type. Don't use them as a crutch — understand why each one works so you can replicate it manually.
+  </div>
+</div>
+```
+
+  </div>
+
+  <div class="callout" style="margin-top:1.5rem;">
+    <strong>Mode progression path:</strong> Start in P mode to learn metering and white balance → move to A mode to understand depth of field → move to S mode to understand motion → then use M mode deliberately when you need full control. Don't rush to Manual — it's the hardest and not always the best choice.
+  </div>
+</div>
+
+<!-- ===== SECTION 3: SETTINGS ===== -->
+
+<div class="section" id="settings">
+  <div class="sec-title">Camera <span>Settings</span> — What to Change Now</div>
+  <div class="sec-sub">Immediate improvements · Default learning setup · Hidden features</div>
+
+  <div class="card card-accent">
+    <h3>Set These First — Before Your Next Shoot <span class="badge red">DO NOW</span></h3>
+    <div class="settings-grid" style="margin-top:0.8rem;">
+      <div class="setting-item">
+        <div class="s-label">Image Size</div>
+        <div class="s-value">2560 × 1920 (5M)</div>
+        <p>Always shoot at maximum resolution. Storage is cheap; losing detail is not recoverable.</p>
+      </div>
+      <div class="setting-item">
+        <div class="s-label">Image Quality</div>
+        <div class="s-value">FINE</div>
+        <p>The FZ20 shoots JPEG only. Use the highest quality setting (Fine) to minimize compression artifacts.</p>
+      </div>
+      <div class="setting-item">
+        <div class="s-label">ISO</div>
+        <div class="s-value">80 (manual) or ISO Auto Off</div>
+        <p>Turn off Auto ISO. Fix it at 80 outdoors. Manually raise to 200 indoors. Never let the camera decide.</p>
+      </div>
+      <div class="setting-item">
+        <div class="s-label">Review</div>
+        <div class="s-value">1 sec</div>
+        <p>Set image review to 1 second. Long reviews drain battery and slow you down in the field.</p>
+      </div>
+      <div class="setting-item">
+        <div class="s-label">Digital Zoom</div>
+        <div class="s-value">OFF</div>
+        <p>Turn this off permanently. It degrades image quality. Use only optical zoom (the physical lens).</p>
+      </div>
+      <div class="setting-item">
+        <div class="s-label">OIS (Image Stabilizer)</div>
+        <div class="s-value">ON (Mode 1)</div>
+        <p>Keep Optical Image Stabilization on at all times. It compensates for hand shake, especially at telephoto.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-gold">
+    <h3>Commonly Overlooked Features <span class="badge gold">HIDDEN VALUE</span></h3>
+    <p><strong>Exposure Compensation (+/- button):</strong> This is probably the most important control you're not using. Press it and rotate the dial to add or subtract up to ±2 EV of exposure in any semi-auto mode (P, A, S). Use +0.7 to +1.3 when shooting dark subjects against bright sky. Use -0.7 when shooting light subjects (white buildings, snow) to prevent blown-out whites.</p>
+    <p style="margin-top:0.6rem;"><strong>Auto Bracket (ABT):</strong> Takes 3 shots in sequence at different exposures (-EV, correct, +EV). Useful when you're unsure of exposure — Cleveland architecture at golden hour, for example. Find in the burst mode button/menu.</p>
+    <p style="margin-top:0.6rem;"><strong>Histogram:</strong> Press DISPLAY to cycle display modes. Find the histogram view — it shows you a graph of your image's brightness distribution. A spike on the right = blown highlights (lost detail). A spike on the left = crushed blacks. Aim for a bell curve with no clipping at either edge.</p>
+    <p style="margin-top:0.6rem;"><strong>EVF vs LCD:</strong> Use the EVF (electronic viewfinder — the eyepiece) outdoors. The 2" LCD is nearly impossible to read in bright sunlight. Press EVF/LCD button to switch.</p>
+  </div>
+
+  <div class="card card-steel">
+    <h3>Your Learning Mode Default Setup</h3>
+    <p>Set the camera to this baseline when starting a practice session:</p>
+    <div class="settings-grid" style="margin-top:0.8rem;">
+      <div class="setting-item">
+        <div class="s-label">Mode Dial</div>
+        <div class="s-value">A (Aperture Priority)</div>
+        <p>Best learning mode — gives you control over depth of field while keeping exposure safe.</p>
+      </div>
+      <div class="setting-item">
+        <div class="s-label">Aperture</div>
+        <div class="s-value">f/5.6</div>
+        <p>Good general starting aperture. Enough depth of field for architecture, not fully stopped down.</p>
+      </div>
+      <div class="setting-item">
+        <div class="s-label">ISO</div>
+        <div class="s-value">80</div>
+        <p>Cleanest files. Adjust upward only when shutter speed drops too low for the scene.</p>
+      </div>
+      <div class="setting-item">
+        <div class="s-label">White Balance</div>
+        <div class="s-value">Daylight or Cloudy</div>
+        <p>Don't use AWB while learning. Pick one preset per shooting session and stay consistent.</p>
+      </div>
+      <div class="setting-item">
+        <div class="s-label">Metering</div>
+        <div class="s-value">Evaluative (Multi)</div>
+        <p>Default. Switch to Spot metering only for high-contrast scenes (bright windows, backlit subjects).</p>
+      </div>
+      <div class="setting-item">
+        <div class="s-label">Focus</div>
+        <div class="s-value">9-Area AF</div>
+        <p>Default. Switch to Spot AF for architecture details or when AF hunts in low contrast.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 4: SHOOTING PRESETS ===== -->
+
+<div class="section" id="presets">
+  <div class="sec-title">Shooting <span>Presets</span> & Workflows</div>
+  <div class="sec-sub">Exact settings by subject · Step-by-step workflows</div>
+
+  <div class="preset-tabs">
+    <button class="preset-tab active" onclick="showPreset('arch')">Architecture</button>
+    <button class="preset-tab" onclick="showPreset('skyline')">Skylines</button>
+    <button class="preset-tab" onclick="showPreset('motion')">Motion / Trains</button>
+    <button class="preset-tab" onclick="showPreset('birds')">Birds / Wildlife</button>
+    <button class="preset-tab" onclick="showPreset('lowlight')">Low Light / Night</button>
+    <button class="preset-tab" onclick="showPreset('macro')">Macro / Detail</button>
+  </div>
+
+  <div class="preset-panel active" id="preset-arch">
+    <div class="card card-accent"><h3>Architecture — Schools, Buildings, Hallways</h3>
+    <div class="preset-row"><span class="preset-key">Mode</span><span class="preset-val">A or M</span><span class="preset-why">You want full depth of field control. In sunlight, M lets you lock exposure.</span></div>
+    <div class="preset-row"><span class="preset-key">Aperture</span><span class="preset-val">f/5.6 – f/8</span><span class="preset-why">Maximum depth of field — everything from foreground to background sharp.</span></div>
+    <div class="preset-row"><span class="preset-key">ISO</span><span class="preset-val">80</span><span class="preset-why">Daylight architecture always gets ISO 80. No exceptions.</span></div>
+    <div class="preset-row"><span class="preset-key">White Balance</span><span class="preset-val">Daylight or Cloudy</span><span class="preset-why">Cloudy adds slight warmth to concrete/brick. Daylight is neutral.</span></div>
+    <div class="preset-row"><span class="preset-key">Zoom</span><span class="preset-val">Wide (35–50mm) or Tele (200–300mm)</span><span class="preset-why">Wide for converging lines/drama. Tele for compression, stacking elements.</span></div>
+    <div class="preset-row"><span class="preset-key">Shutter</span><span class="preset-val">1/125s minimum hand-held</span><span class="preset-why">OIS helps, but below 1/125s, brace against a wall or use a surface.</span></div>
+    <div class="preset-row"><span class="preset-key">Metering</span><span class="preset-val">Evaluative; +0.7 EV comp if sky is bright</span><span class="preset-why">Prevent buildings from underexposing against blue sky.</span></div>
+    </div>
+    <div class="callout" style="margin-top:1rem;">
+      <strong>Workflow:</strong> Set mode → set aperture f/8 → set ISO 80 → set WB Daylight → find your composition → half-press to meter → check exposure bar → adjust if needed → shoot. Then review histogram. If highlights are clipped, add -0.3 EV comp and reshoot.
+    </div>
+  </div>
+
+  <div class="preset-panel" id="preset-skyline">
+    <div class="card card-accent"><h3>Skylines — Cleveland / Chicago Urban</h3>
+    <div class="preset-row"><span class="preset-key">Golden Hour</span><span class="preset-val">A mode, f/5.6, ISO 80</span><span class="preset-why">Rich light, no need to rush. WB set to Daylight or Cloudy for warm tones.</span></div>
+    <div class="preset-row"><span class="preset-key">Daytime Overcast</span><span class="preset-val">A mode, f/8, ISO 80</span><span class="preset-why">Flat light = even exposure. Great for capturing architectural texture without harsh shadows.</span></div>
+    <div class="preset-row"><span class="preset-key">Blue Hour (just after sunset)</span><span class="preset-val">M mode, f/2.8, ISO 100–200, 1/4s–1s</span><span class="preset-why">Best for city lights — sky still has deep blue tone, buildings are lit. Camera on solid surface.</span></div>
+    <div class="preset-row"><span class="preset-key">Full Night</span><span class="preset-val">Scene: Night or M mode, f/2.8, ISO 200, 2–8s</span><span class="preset-why">Requires a surface or improvised tripod. OIS OFF for long exposures (it fights the stillness).</span></div>
+    <div class="preset-row"><span class="preset-key">Tele Compression</span><span class="preset-val">Zoom to 300–420mm, A mode, f/5.6</span><span class="preset-why">Stack buildings, compress city layers. From a distance. Increases apparent density of skyline.</span></div>
+    </div>
+    <div class="callout warn" style="margin-top:1rem;">
+      <strong>OIS note:</strong> For exposures longer than 1/4 second with the camera resting on a surface, <strong>turn OIS OFF</strong>. When the camera is fully stationary, OIS tries to correct for motion that doesn't exist, causing micro-blurring. Turn it back on for hand-held shooting.
+    </div>
+  </div>
+
+  <div class="preset-panel" id="preset-motion">
+    <div class="card card-accent"><h3>Motion — Trains, L-Rail, Street</h3>
+    <div class="preset-row"><span class="preset-key">Freeze (full stop)</span><span class="preset-val">S mode, 1/1000s+, ISO up to 200</span><span class="preset-why">Completely freezes the train. Mid-air pigeon, frozen spray.</span></div>
+    <div class="preset-row"><span class="preset-key">Motion Blur (artistic)</span><span class="preset-val">S mode, 1/30s–1/15s, pan with subject</span><span class="preset-why">Panning: rotate camera with moving train. Subject stays relatively sharp, background streaks.</span></div>
+    <div class="preset-row"><span class="preset-key">Long Blur (light trail)</span><span class="preset-val">M mode, 8s–15s, f/8, ISO 80</span><span class="preset-why">Car headlights/taillights become streaks. Camera must be completely still on a surface.</span></div>
+    <div class="preset-row"><span class="preset-key">Burst Mode</span><span class="preset-val">SCN Sport or Burst button, 1/500s+</span><span class="preset-why">Shoot continuous frames as train passes. Pick best from burst afterward.</span></div>
+    <div class="preset-row"><span class="preset-key">Pre-focus trick</span><span class="preset-val">Manual focus on a fixed point + wait</span><span class="preset-why">Pre-focus on the track/road. Wait for subject to enter frame. Press at the moment — no AF lag.</span></div>
+    </div>
+    <div class="callout" style="margin-top:1rem;">
+      <strong>Panning technique:</strong> Find your background first. Track the train before pressing shutter. Follow through as you press — don't stop moving when you fire. Use 1/30s–1/60s. The FZ20's OIS can interfere with panning — try with OIS off if results are inconsistent.
+    </div>
+  </div>
+
+  <div class="preset-panel" id="preset-birds">
+    <div class="card card-accent"><h3>Birds & Urban Wildlife — Pigeons, Sparrows</h3>
+    <div class="preset-row"><span class="preset-key">Stationary bird</span><span class="preset-val">A mode, f/4, ISO 80, max optical zoom</span><span class="preset-why">f/4 gives slight background separation. Full 420mm reach.</span></div>
+    <div class="preset-row"><span class="preset-key">Bird in flight</span><span class="preset-val">S mode, 1/1000s minimum, ISO 200 if needed</span><span class="preset-why">Birds move fast. 1/1000s minimum. Accept ISO 200 grain for clean wings.</span></div>
+    <div class="preset-row"><span class="preset-key">Pigeons on ground</span><span class="preset-val">A mode, f/4–f/5.6, ISO 80, mid-zoom (200mm)</span><span class="preset-why">Get low — ground level. 200mm compresses nicely without distortion.</span></div>
+    <div class="preset-row"><span class="preset-key">AF mode</span><span class="preset-val">9-area AF or Sport scene</span><span class="preset-why">Sport scene prioritizes fast AF and high shutter. Good for erratic movement.</span></div>
+    <div class="preset-row"><span class="preset-key">Approach strategy</span><span class="preset-val">Slow movement, low profile, pre-focus</span><span class="preset-why">Pigeons are actually cooperative if you move slowly. Pre-focus on where they're likely to be.</span></div>
+    </div>
+  </div>
+
+  <div class="preset-panel" id="preset-lowlight">
+    <div class="card card-accent"><h3>Low Light & Indoor Architecture</h3>
+    <div class="preset-row"><span class="preset-key">School hallways</span><span class="preset-val">A mode, f/2.8, ISO 200, WB Fluorescent</span><span class="preset-why">Open wide for light. WB fluorescent kills the green cast from institutional lighting.</span></div>
+    <div class="preset-row"><span class="preset-key">Outdoors at dusk</span><span class="preset-val">A mode, f/2.8, ISO 200, WB Cloudy</span><span class="preset-why">Golden/blue hour needs every photon. f/2.8 is your widest.</span></div>
+    <div class="preset-row"><span class="preset-key">Night handheld</span><span class="preset-val">A mode, f/2.8, ISO 200, 1/30s min</span><span class="preset-why">Absolute floor before blur is unavoidable. Brace hard against surfaces.</span></div>
+    <div class="preset-row"><span class="preset-key">Night on surface</span><span class="preset-val">M mode, f/2.8, ISO 80, 1–8s, OIS OFF</span><span class="preset-why">Best quality. Set camera on ledge/railing. Self-timer to avoid camera shake when pressing shutter.</span></div>
+    <div class="preset-row"><span class="preset-key">Flash</span><span class="preset-val">Use sparingly; only within 3–4m range</span><span class="preset-why">Built-in flash is weak. Beyond 4m it barely registers. Creates harsh flat light on architecture.</span></div>
+    </div>
+    <div class="callout warn" style="margin-top:1rem;">
+      <strong>Low light reality check:</strong> The FZ20's 1/2.5" CCD sensor is its main limitation. ISO 400 is usable but noticeably grainy — especially in shadows. Your best low-light strategy is always: open to f/2.8, slow the shutter, stabilize the camera, and keep ISO at 200 or below.
+    </div>
+  </div>
+
+  <div class="preset-panel" id="preset-macro">
+    <div class="card card-accent"><h3>Macro — Architectural Detail & Close-Up</h3>
+    <div class="preset-row"><span class="preset-key">Mode</span><span class="preset-val">🌸 Macro + A mode</span><span class="preset-why">Macro mode enables close focus. A mode gives depth of field control.</span></div>
+    <div class="preset-row"><span class="preset-key">Zoom position</span><span class="preset-val">Wide end (35mm)</span><span class="preset-why">Minimum focus distance is closest at wide zoom. Zooming in while in macro increases min distance.</span></div>
+    <div class="preset-row"><span class="preset-key">Aperture</span><span class="preset-val">f/4–f/5.6</span><span class="preset-why">At macro distances, f/2.8 can be too shallow — a few mm depth of field. f/5.6 gives slightly more.</span></div>
+    <div class="preset-row"><span class="preset-key">Stabilization</span><span class="preset-val">OIS ON + brace camera</span><span class="preset-why">At 5cm distance, a 1mm movement is magnified. Brace wrists against a surface.</span></div>
+    <div class="preset-row"><span class="preset-key">Subjects</span><span class="preset-val">Rust, textures, lettering, bolts, patterns</span><span class="preset-why">Architecture has incredible macro detail — peeling paint, weathered metal, stone grain.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 5: 30-DAY PLAN ===== -->
+
+<div class="section" id="plan">
+  <div class="sec-title"><span>30-Day</span> Urban Photography Program</div>
+  <div class="sec-sub">Progressive missions · Cleveland/Chicago environments · Click weeks to expand</div>
+
+  <div class="progress-section">
+    <h3>Program Overview</h3>
+    <div class="skill-bars">
+      <div class="skill-bar">
+        <div class="skill-bar-label"><span>Week 1 — Camera Control Fundamentals</span><span>Days 1–7</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:100%; background:var(--steel)"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-bar-label"><span>Week 2 — Exposure Mastery</span><span>Days 8–14</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%; background:var(--gold)"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-bar-label"><span>Week 3 — Composition & Style</span><span>Days 15–21</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:50%; background:var(--accent)"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-bar-label"><span>Week 4 — Portfolio Building</span><span>Days 22–30</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:25%; background:var(--ink)"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 1 -->
+
+  <div class="week-block">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <span class="week-num">WEEK 1</span>
+      <span class="week-title">Camera Control Fundamentals</span>
+      <button class="week-toggle">▼ expand</button>
+    </div>
+    <div class="week-days">
+      <div class="day-row">
+        <div class="day-num">DAY 1</div>
+        <div class="day-mission">Read the camera<small>Spend 30 min with camera, no shooting</small></div>
+        <div class="day-drill">Find every physical control. Press every button. Navigate every menu. Locate: ISO, WB, metering, flash, macro, OIS. Change image size to max. Turn off digital zoom. Read the EVF/LCD display symbols.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 2</div>
+        <div class="day-mission">ISO ladder<small>School hallway or outdoor wall</small></div>
+        <div class="day-drill">Shoot the same subject at ISO 80, 100, 200, 400. Same framing, same everything — only change ISO. Download to computer (or zoom in on LCD). Compare noise in shadow areas. You'll never want to use ISO 400 again.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 3</div>
+        <div class="day-mission">Aperture ladder<small>Hallway or street</small></div>
+        <div class="day-drill">Set A mode. Shoot identical frame at f/2.8, f/4, f/5.6, f/8. At wide zoom AND telephoto zoom. 16 shots total. See how depth of field changes with both aperture and zoom. This is your depth of field reference.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 4</div>
+        <div class="day-mission">Shutter speed ladder<small>Moving subject — street, people, leaves</small></div>
+        <div class="day-drill">Set S mode. Shoot the same moving subject at 1/1000s, 1/500s, 1/125s, 1/30s, 1/8s. Document what freezes vs. blurs at each speed. This is your motion reference card.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 5</div>
+        <div class="day-mission">White balance comparison<small>Any outdoor scene</small></div>
+        <div class="day-drill">Shoot same frame with: AWB, Daylight, Cloudy, Shade, Incandescent. See the color shift. Shoot at golden hour if possible — AWB vs Cloudy will be dramatically different. Build intuition for when to override AWB.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 6</div>
+        <div class="day-mission">Zoom compression study<small>School exterior or city block</small></div>
+        <div class="day-drill">Find a scene with depth (buildings, trees in foreground and background). Shoot it at: wide (35mm), 100mm, 200mm, 300mm, 420mm — adjusting position each time to keep subject same size. Observe how background compresses. This is telephoto compression.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 7</div>
+        <div class="day-mission">Full review + re-shoot best frame<small>30 min review + 30 min re-shoot</small></div>
+        <div class="day-drill">Review every photo from Days 2–6. Pick one you want to improve. Go back to that location and re-shoot it with what you've learned. Compare before/after. Write down what you changed and why.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 2 -->
+
+  <div class="week-block">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <span class="week-num">WEEK 2</span>
+      <span class="week-title">Exposure Mastery</span>
+      <button class="week-toggle">▼ expand</button>
+    </div>
+    <div class="week-days">
+      <div class="day-row">
+        <div class="day-num">DAY 8</div>
+        <div class="day-mission">Histogram training<small>Any scene</small></div>
+        <div class="day-drill">Enable histogram display. Shoot 20 frames. For each, check the histogram BEFORE reviewing the actual image — try to predict what the histogram will look like. Learn to read exposure without looking at the image.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 9</div>
+        <div class="day-mission">Exposure compensation<small>High contrast scene — building vs sky</small></div>
+        <div class="day-drill">Find a building against a bright sky. Shoot at 0 EV, -1, +1, -2, +2. See how the building/sky balance shifts. Learn the + side opens shadows, - side protects highlights. Use this every shoot from now on.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 10</div>
+        <div class="day-mission">Metering modes<small>Tricky light situation</small></div>
+        <div class="day-drill">Find a backlit subject or window-lit interior. Shoot with evaluative metering, then switch to spot metering aimed at your subject vs. aimed at the background. See the dramatic exposure difference. Learn when spot metering saves you.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 11</div>
+        <div class="day-mission">First Manual mode session<small>Consistently lit outdoor scene</small></div>
+        <div class="day-drill">Set M mode. ISO 80. Set aperture f/5.6. Adjust shutter until meter reads 0. Take 5 shots. Walk to a different area (different light). Adjust shutter to re-balance to 0. Repeat 4 times. Get comfortable reading the meter.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 12</div>
+        <div class="day-mission">Architecture deep dive<small>School exterior/interior</small></div>
+        <div class="day-drill">Spend 45 min only on your school building. Get minimum 20 shots. Requirements: at least 3 different focal lengths, at least 2 different apertures, at least 1 macro shot of architectural detail, at least 1 wide-angle low-angle shot. No auto modes.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 13</div>
+        <div class="day-mission">Motion blur study<small>Busy street or train/transit</small></div>
+        <div class="day-drill">Find a location with consistent traffic. Shoot passing vehicles/people at 1/1000s (frozen), 1/125s (slight blur), 1/30s (significant blur), then attempt your first panning shot at 1/60s. At least 30 shots. Find what works.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 14</div>
+        <div class="day-mission">Golden hour shoot<small>Any outdoor location at sunset ±1hr</small></div>
+        <div class="day-drill">Check sunset time. Arrive 45 min before. Set WB to Daylight or Cloudy. Shoot A mode, f/5.6, ISO 80. As light drops, open to f/2.8, then raise ISO to 200. Minimum 30 shots. Document how your settings had to change as light faded.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 3 -->
+
+  <div class="week-block">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <span class="week-num">WEEK 3</span>
+      <span class="week-title">Composition & Style Development</span>
+      <button class="week-toggle">▼ expand</button>
+    </div>
+    <div class="week-days">
+      <div class="day-row">
+        <div class="day-num">DAY 15</div>
+        <div class="day-mission">Leading lines only<small>School hallway/staircase</small></div>
+        <div class="day-drill">Shoot 20 frames where the only compositional element is a strong leading line — hallway floor lines, staircase edges, window frames, road lanes. Vary your position (low, high, centered, off-center) for each leading line.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 16</div>
+        <div class="day-mission">Rule of thirds exercise<small>Any urban scene</small></div>
+        <div class="day-drill">Enable the grid overlay if available (or mentally divide the frame into 9 squares). Shoot 15 frames with horizon on the upper third, 15 with horizon on the lower third. Compare. Then place your main subject on each of the four grid intersections. See how this changes the "feel" of the shot.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 17</div>
+        <div class="day-mission">Geometry & patterns<small>Urban architecture</small></div>
+        <div class="day-drill">Find repeating patterns — window arrays, brick rows, fence lines, staircases. Shoot flat-on (parallel to pattern) vs. angled. Use telephoto compression to stack patterns. Minimum 25 shots. Architecture is geometry — train your eye to see it.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 18</div>
+        <div class="day-mission">Framing within frames<small>Doorways, windows, arches</small></div>
+        <div class="day-drill">Find 5 different natural frames (doorways, windows, archways, tree branches). Compose each so your subject is visible through/within the frame. This creates depth and context. Minimum 3 shots per frame = 15 total.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 19</div>
+        <div class="day-mission">Low angle / worm's eye view<small>Buildings, trees, structures</small></div>
+        <div class="day-drill">Spend the entire session shooting from below — camera pointing upward. Buildings, staircases, bridges, trees. You're looking for dramatic perspective distortion and converging vertical lines. This is called "keystoning." At least 20 shots, all from below eye level.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 20</div>
+        <div class="day-mission">Light and shadow study<small>Sunny day, hard shadows</small></div>
+        <div class="day-drill">Shoot only shadow shapes and hard light patterns — shadows cast by railings, window bars, trees. The shadow IS the subject. Expose for the highlights (use -0.3 to -0.7 EV comp). This forces you to see light as a compositional element.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 21</div>
+        <div class="day-mission">Pigeon/bird focus session<small>Public square or park</small></div>
+        <div class="day-drill">Dedicated 45 min urban wildlife session. S mode, 1/1000s minimum. ISO 200 if needed. Try: eye-level ground shots, birds in flight (burst), feet/texture macro, flock behavior wide. Get low. Move slowly. Minimum 40 shots.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 4 -->
+
+  <div class="week-block">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <span class="week-num">WEEK 4</span>
+      <span class="week-title">Portfolio Building & Advanced Techniques</span>
+      <button class="week-toggle">▼ expand</button>
+    </div>
+    <div class="week-days">
+      <div class="day-row">
+        <div class="day-num">DAY 22</div>
+        <div class="day-mission">Night shoot — city lights<small>Cleveland downtown or urban area</small></div>
+        <div class="day-drill">After dark only. Camera on a surface (railing, ledge, bench). Self-timer to eliminate shake. M mode, f/2.8, ISO 200, 1–4s. Find 3 different locations. Minimum 30 shots. Review for sharpness — any blurring means camera moved.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 23</div>
+        <div class="day-mission">Train/transit series<small>Train station or transit stop</small></div>
+        <div class="day-drill">One location, full session. Combine: slow panning (1/30s), frozen (1/1000s), light trails if evening, station architecture. Tell the story of transit — the wait, the motion, the station geometry. Minimum 50 shots, expecting 3–5 keepers.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 24</div>
+        <div class="day-mission">Texture collection<small>Urban details, macro</small></div>
+        <div class="day-drill">Macro mode only. Find 10 different textures in your urban environment — worn concrete, rust streaks, peeling paint, brick mortar, steel grating. For each: one straight-on flat shot and one angled shot to emphasize texture with light raking across it.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 25</div>
+        <div class="day-mission">Revisit your best location<small>Your most productive spot so far</small></div>
+        <div class="day-drill">Return to the single location that gave you the best shots. Re-shoot it at a different time of day than before. Document exactly what changes — light direction, shadows, atmosphere. This teaches you that timing is a skill, not luck.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 26–27</div>
+        <div class="day-mission">Two-day urban project<small>One building or block, two perspectives</small></div>
+        <div class="day-drill">Pick one significant building. Day 26: exterior only — every angle, every focal length, macro to wide. Day 27: interior or close details — hallways, windows from inside, staircases. Build a 10–15 image "essay" on this single subject.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 28</div>
+        <div class="day-mission">Full manual free shoot<small>Any location</small></div>
+        <div class="day-drill">M mode only. No semi-auto fallback. ISO 80. You set every parameter. React to changing light by adjusting shutter speed first, then aperture, last ISO. Minimum 45 minutes, 40+ shots. This is your Manual milestone.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 29</div>
+        <div class="day-mission">Portfolio cull<small>At home, reviewing all 30 days</small></div>
+        <div class="day-drill">Review every photo from the program. Select your top 15. Write one sentence for each: what settings you used and why it works (or doesn't). This is editorial thinking — the skill that separates photographers from snappers.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-num">DAY 30</div>
+        <div class="day-mission">Signature shoot<small>Your best environment, your best time of day</small></div>
+        <div class="day-drill">No assignments. No constraints. Go to your favorite location at your best light. Shoot with everything you've learned. No pressure — just make images you'd be proud to show someone. Then compare Day 30 to Day 1. That gap is your progress.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 6: MISTAKES ===== -->
+
+<div class="section" id="mistakes">
+  <div class="sec-title">Beginner <span>Mistakes</span> — Specific to You & the FZ20</div>
+  <div class="sec-sub">What goes wrong · Why · The fix</div>
+
+  <div class="mistake-list">
+    <div class="mistake-item">
+      <div class="mistake-num">01</div>
+      <div class="mistake-content">
+        <h4>Leaving ISO on Auto</h4>
+        <div class="wrong">✗ Auto ISO quietly pushes to 400 in indoor/shade conditions. Your photos look grainy. You don't know why.</div>
+        <div class="fix">✓ Fix: Set ISO manually every session. ISO 80 outdoors, ISO 200 indoors/shade. The FZ20's CCD is noticeably degraded at 400. You need to be in control of this.</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-num">02</div>
+      <div class="mistake-content">
+        <h4>Using Digital Zoom</h4>
+        <div class="wrong">✗ You see the zoom going past 12× and think you're getting closer to your subject. You're actually cropping and destroying resolution.</div>
+        <div class="fix">✓ Fix: Turn off digital zoom in the menu. Your 12× optical zoom reaches 420mm — that's genuinely far. If you need more reach, move your feet or crop later in software.</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-num">03</div>
+      <div class="mistake-content">
+        <h4>Shooting Architecture at f/2.8</h4>
+        <div class="wrong">✗ You open to f/2.8 thinking more light = better image. But at f/2.8 with a wide lens, the front of the building is sharp but the back is slightly soft. The corner details are blurry.</div>
+        <div class="fix">✓ Fix: Architecture almost always needs f/5.6–f/8. Use the slower shutter speed this requires — brace against a wall, or use a railing as a makeshift tripod.</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-num">04</div>
+      <div class="mistake-content">
+        <h4>Not using Exposure Compensation</h4>
+        <div class="wrong">✗ Shooting buildings against bright sky and getting silhouettes or blown-out sky with dark buildings. Accepting it as "just how it is."</div>
+        <div class="fix">✓ Fix: The +/- EV compensation button is one of the most important controls on the camera. Use +0.7 to +1.3 when dark subjects are against bright sky. Use -0.3 to -0.7 for white/light subjects.</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-num">05</div>
+      <div class="mistake-content">
+        <h4>OIS ON during long exposure on a surface</h4>
+        <div class="wrong">✗ Camera is sitting still on a ledge. OIS is on. Your 2-second night shot is slightly blurred despite having the camera resting on a solid surface.</div>
+        <div class="fix">✓ Fix: When the camera is fully stationary (on a surface, not hand-held), turn OIS OFF. The stabilizer fights non-existent movement and creates micro-blur. OIS is for hand-held shooting only.</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-num">06</div>
+      <div class="mistake-content">
+        <h4>Shooting in Macro mode when not needed</h4>
+        <div class="wrong">✗ You leave macro mode on and try to photograph a building 20 meters away. The camera can't focus and gives up, or locks focus somewhere unexpected.</div>
+        <div class="fix">✓ Fix: Macro mode disables normal long-distance focusing. It's only for subjects within ~30–40cm. Check the flower icon on your display — if it's on and you're shooting far subjects, turn it off.</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-num">07</div>
+      <div class="mistake-content">
+        <h4>Only shooting from standing eye level</h4>
+        <div class="wrong">✗ Every shot is taken from 5'5"–6' height. The images feel flat, predictable, tourist-photo-like.</div>
+        <div class="fix">✓ Fix: Before pressing the shutter, ask: "Is this the most interesting angle?" Get low (ground level for pigeons, low for architecture). Go high when possible. Move side to side. The FZ20 has an EVF and LCD — you can shoot from non-standard heights.</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-num">08</div>
+      <div class="mistake-content">
+        <h4>Not using the EVF outdoors</h4>
+        <div class="wrong">✗ Holding the camera away from your face in bright sunlight trying to see a washed-out 2" LCD. Guessing at exposure and composition.</div>
+        <div class="fix">✓ Fix: Press the EVF/LCD button to switch to the eyepiece viewfinder. It's blackout-proof, more accurate for exposure, steadies the camera against your face, and extends battery life. Learn to use it as your primary view outdoors.</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-num">09</div>
+      <div class="mistake-content">
+        <h4>Reviewing photos between every shot</h4>
+        <div class="wrong">✗ You shoot, review for 10 seconds, shoot, review. You miss the moment. You kill your battery. You break your flow.</div>
+        <div class="fix">✓ Fix: Set review time to 1 second or off. Shoot your sequence, then review at the end. Trust your settings. In fast situations (trains, birds), reviewing mid-action means missing the shot.</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-num">10</div>
+      <div class="mistake-content">
+        <h4>Expecting DSLR depth of field from this camera</h4>
+        <div class="wrong">✗ Trying to get dramatically blurred backgrounds like you see in portrait photography. Setting f/2.8, shooting, feeling disappointed that backgrounds are still fairly sharp.</div>
+        <div class="fix">✓ Fix: The 1/2.5" sensor produces much less background blur than a DSLR at equivalent apertures. To maximize blur: use f/2.8, zoom in as much as possible, get as close to your subject as focus allows, and put your subject far from the background. Accept this as the camera's character, not a failure.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:2rem;">
+    <strong>The one thing that separates improving photographers from stuck ones:</strong> They review their bad shots longer than their good ones. A bad shot tells you exactly what to fix. A good shot just feels nice. Learn from failure more than success.
+  </div>
+</div>
+
+</main>
+
+<footer>FZ20 Photography Masterclass · Built for Cleveland/Urban Urban Photography · 30-Day Progressive Program</footer>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function toggleMode(card) {
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('open'));
+  if (!wasOpen) card.classList.add('open');
+}
+
+function showPreset(id) {
+  document.querySelectorAll('.preset-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.preset-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('preset-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function toggleWeek(header) {
+  const days = header.nextElementSibling;
+  const btn = header.querySelector('.week-toggle');
+  const isOpen = days.classList.contains('open');
+  days.classList.toggle('open', !isOpen);
+  btn.textContent = isOpen ? '▼ expand' : '▲ collapse';
+}
+</script>
+
+</body>
+</html>
