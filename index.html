@@ -267,6 +267,7 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
   <button onclick="showSection('cheat',this)">⑤ Cheat Sheet ▲</button>
   <button onclick="showSection('plan',this)">⑥ 30-Day Plan</button>
   <button onclick="showSection('mistakes',this)">⑦ Mistakes</button>
+  <button onclick="showSection('lightroom',this)">⑧ Lightroom</button>
 </nav>
 
 <main>
@@ -309,8 +310,8 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 <div class="sec-sub">What each mode does internally · When to use it · Click to expand</div>
 <div class="mode-grid">
 <div class="mode-card" onclick="toggleMode(this)">
-<div class="m-dial">AUTO</div><div class="m-name">Full Auto</div><div class="m-short">Camera controls everything.</div>
-<div class="mode-detail"><strong>What it does:</strong> Sets aperture, shutter, ISO, WB, focus, and flash. Zero control for you.<br><br><strong>When to use:</strong> Handing the camera to someone else. Otherwise, avoid it — it teaches you nothing and often fires the flash when you don't want it.<br><br><strong>Note:</strong> If an Auto shot looks good, try to reproduce it manually in P mode and understand why it worked.</div>
+<div class="m-dial" style="font-size:1rem;padding-top:.3rem;">SIMPLE</div><div class="m-name">Simple Mode <span class="badge badge-p">FZ20 NOTE</span></div><div class="m-short">The FZ20's closest thing to full auto.</div>
+<div class="mode-detail"><strong>Important:</strong> The FZ20 does <strong>not</strong> have a dedicated "AUTO" position on the mode dial. Some versions of the camera have a "Simple" mode (sometimes an icon, not text) that locks everything and limits menus to basics. Other dial positions you might confuse with auto are <strong>P (Program AE)</strong> — which is the practical equivalent of a smart auto with more control.<br><br><strong>Your actual dial positions are:</strong> Simple (if present), P, A, S, M, SCN (Scene modes), and Motion Picture.<br><br><strong>What to use instead of AUTO:</strong> Use P mode. It handles exposure automatically while still letting you set ISO, WB, and EV compensation — meaning you learn something every time you use it instead of nothing.<br><br><strong>If you've been shooting in a mode that "just works":</strong> That's probably P mode. Good starting point — now start overriding its defaults.</div>
 </div>
 <div class="mode-card" onclick="toggleMode(this)">
 <div class="m-dial">P</div><div class="m-name">Program AE</div><div class="m-short">Camera picks exposure, you pick everything else.</div>
@@ -442,6 +443,7 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 <div class="preset-row"><span class="preset-key">Sunsets</span><span class="preset-val">A mode, f/8, ISO 80, WB Daylight, EV -0.3</span><span class="preset-why">Expose for sky, not foreground. WB Daylight preserves orange. Slight underexposure saturates color.</span></div>
 </div>
 <div class="callout callout-p"><strong>For "random shit" that catches your eye:</strong> Keep camera in P mode with WB set (not AWB) as your quick-grab baseline. Capture the moment first, refine technique second. The instinct to notice something is the most important skill in photography — don't miss it fumbling with settings.</div>
+<div class="callout callout-w" style="margin-top:.8rem;"><strong>Why your dead tree / sunset shot was blurry — diagnosed:</strong> At sunset, light is low. If you were zoomed in toward telephoto to frame the tree against the sky, the camera dropped the shutter to something like 1/15s or slower. At 200–420mm zoom, even a genuinely steady hand causes blur below 1/125s — telephoto magnifies every micro-tremor, and OIS can't fully compensate in dim light.<br><br><strong>The fix for hand-held sunset + telephoto:</strong> Raise ISO to 200 before shooting so the camera has headroom to keep shutter fast. In S mode, explicitly lock 1/250s. In A or P mode, check what shutter speed the camera selected on the display <em>before</em> you press — if it's below roughly 1/zoom (below 1/300 at 300mm zoom), raise ISO until the shutter comes up. Bracing technique also matters: elbows tucked in against your body, exhale slowly, squeeze the shutter rather than jabbing it.</div>
 </div>
 
 <div class="preset-panel" id="preset-cats">
@@ -693,7 +695,219 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 <div class="callout callout-c" style="margin-top:2rem;"><strong>The habit that separates improving photographers from stuck ones:</strong> They review their bad shots longer than their good ones. A bad shot tells you exactly what to change. A good shot just feels nice. Study failure more than success.</div>
 </div>
 
-</main>
+<!-- §8 LIGHTROOM -->
+<div class="section" id="lightroom">
+<div class="sec-title"><span class="hl-c">Lightroom</span> Editing Tutorial</div>
+<div class="sec-sub">What every tool does · How to use it · FZ20 JPEG workflow · Your subjects specifically</div>
+
+<div class="callout callout-c"><strong>Important context for FZ20 files:</strong> Your camera shoots JPEG only — not RAW. This means some editing headroom is lost compared to RAW files. JPEGs are already processed by the camera. You can still do a lot, but be gentler with aggressive adjustments — especially Shadows and Highlights — because JPEG doesn't hold up as well as RAW when pushed hard. Work with finesse, not force.</div>
+
+<!-- PANEL TABS for LR sections -->
+<div class="preset-tabs">
+  <button class="preset-tab active" onclick="showPreset('lr-workflow')">Workflow Order</button>
+  <button class="preset-tab" onclick="showPreset('lr-light')">Light Panel</button>
+  <button class="preset-tab" onclick="showPreset('lr-color')">Color &amp; WB</button>
+  <button class="preset-tab" onclick="showPreset('lr-detail')">Detail &amp; Sharpening</button>
+  <button class="preset-tab" onclick="showPreset('lr-tools')">Local Tools</button>
+  <button class="preset-tab" onclick="showPreset('lr-subjects')">By Subject</button>
+  <button class="preset-tab" onclick="showPreset('lr-export')">Export</button>
+</div>
+
+<!-- WORKFLOW ORDER -->
+<div class="preset-panel active" id="preset-lr-workflow">
+<div class="card card-c"><h3>The Right Order to Edit — Always Follow This <span class="badge badge-c">START HERE</span></h3>
+<p>Editing in the wrong order wastes time and creates compounding problems. Always go top-to-bottom in the Develop module in this order:</p>
+<div class="preset-row"><span class="preset-key">Step 1</span><span class="preset-val">Crop &amp; Straighten</span><span class="preset-why">Fix composition first. Rotating and cropping changes what you're looking at — do it before any tonal work so you're editing the final frame, not extra pixels you'll throw away.</span></div>
+<div class="preset-row"><span class="preset-key">Step 2</span><span class="preset-key" style="min-width:0;color:var(--cyan);font-weight:700;">White Balance</span><span class="preset-why">Fix color temperature before anything else. A warm or cool cast will affect how you perceive everything below — you'll overcompensate on other sliders if WB is wrong.</span></div>
+<div class="preset-row"><span class="preset-key">Step 3</span><span class="preset-val">Exposure</span><span class="preset-why">Rough brightness. Get the overall image close to correct. Don't try to perfect it yet — just ballpark it.</span></div>
+<div class="preset-row"><span class="preset-key">Step 4</span><span class="preset-val">Highlights / Shadows</span><span class="preset-why">Recover blown highlights and lift or crush shadows. This is where JPEG files need care — don't push more than ±40–50 or you'll see banding and artifacts.</span></div>
+<div class="preset-row"><span class="preset-key">Step 5</span><span class="preset-val">Whites / Blacks</span><span class="preset-why">Set the true white and black points. Use the histogram as your guide — you want the graph to touch (but not pile up against) both edges.</span></div>
+<div class="preset-row"><span class="preset-key">Step 6</span><span class="preset-val">Contrast / Tone Curve</span><span class="preset-why">Add depth and punch. Contrast globally, or the tone curve for more control.</span></div>
+<div class="preset-row"><span class="preset-key">Step 7</span><span class="preset-val">Color (HSL / Saturation)</span><span class="preset-why">Adjust individual colors or global saturation. Do this after light is correct — otherwise you're chasing a moving target.</span></div>
+<div class="preset-row"><span class="preset-key">Step 8</span><span class="preset-val">Detail (Sharpening / Noise)</span><span class="preset-why">Sharpening and noise reduction last in the global panel — these are fine detail adjustments that only matter once the image looks right overall.</span></div>
+<div class="preset-row"><span class="preset-key">Step 9</span><span class="preset-val">Local Adjustments</span><span class="preset-why">Masks, graduated filters, radial filters, brush — selective edits on specific areas. Always last so you're working on a correctly processed base.</span></div>
+<div class="preset-row"><span class="preset-key">Step 10</span><span class="preset-val">Export</span><span class="preset-why">Export settings depend on where the photo is going. See the Export tab.</span></div>
+</div>
+<div class="callout callout-p"><strong>The single most important habit:</strong> Hold Alt/Option while dragging Whites and Blacks sliders. The screen goes black or white and shows you exactly which pixels are clipping (turning pure white or pure black with no detail). Stop just before clipping appears. This is how you set a perfect tonal range.</div>
+</div>
+
+<!-- LIGHT PANEL -->
+<div class="preset-panel" id="preset-lr-light">
+<div class="card card-p"><h3>The Light Panel — Every Slider Explained</h3>
+
+<div class="preset-row"><span class="preset-key">Exposure</span><span class="preset-val">±2 EV typical range</span><span class="preset-why">The overall brightness dial. Think of it like the shutter speed you should have set in camera. Moving +1 roughly doubles brightness, -1 halves it. For FZ20 JPEGs, don't push beyond ±1.5 or quality degrades visibly.</span></div>
+<div class="preset-row"><span class="preset-key">Contrast</span><span class="preset-val">+10 to +30 typical</span><span class="preset-why">Pushes darks darker and lights lighter simultaneously. Adds punch. FZ20 JPEGs often look a bit flat straight out of camera — a small contrast boost (+15–25) is almost always an improvement.</span></div>
+<div class="preset-row"><span class="preset-key">Highlights</span><span class="preset-val">-20 to -80 for recovery</span><span class="preset-why">Pulls down only the bright areas (clouds, sky, bright windows). Negative values recover detail in blown highlights. On JPEGs, recovery is limited — you're working with what was captured. If the sky is pure white in the file, no amount of Highlights slider will bring back clouds that weren't recorded.</span></div>
+<div class="preset-row"><span class="preset-key">Shadows</span><span class="preset-val">+10 to +50 for lifting</span><span class="preset-why">Lifts only the dark areas — reveals shadow detail without blowing out bright areas. Great for lifting detail in dark building interiors while keeping the sky correctly exposed. On FZ20 JPEGs, be careful above +50 — you may see noise revealed or color banding in the shadows.</span></div>
+<div class="preset-row"><span class="preset-key">Whites</span><span class="preset-val">Set to just before clipping</span><span class="preset-why">Defines the brightest point in the image. Raising Whites brightens highlights without the hard cap that Exposure has. Hold Alt/Option while dragging to see exactly when highlights clip. For most images, set so the histogram just touches the right edge without piling up.</span></div>
+<div class="preset-row"><span class="preset-key">Blacks</span><span class="preset-val">-10 to -30 for depth</span><span class="preset-why">Defines the darkest point. Lowering Blacks deepens shadows and adds richness. Hold Alt/Option while dragging to see when pure black appears. For urban/architecture shots, -15 to -25 adds tremendous depth and makes colors pop.</span></div>
+</div>
+
+<div class="card card-b"><h3>Tone Curve — More Precise Than Contrast</h3>
+<p>The Tone Curve is a graph where the horizontal axis is input brightness (dark on left, bright on right) and the vertical axis is output brightness. You add points and drag them to reshape how tones are rendered.</p>
+<p><strong>Classic S-curve:</strong> Add a point in the upper third and pull up slightly (brightens highlights). Add a point in the lower third and pull down slightly (deepens shadows). This creates an S-shape that adds contrast and punch while retaining more midtone detail than the Contrast slider. This is the single most useful curve shape for your photos.</p>
+<p><strong>For FZ20 JPEG:</strong> Keep curve adjustments subtle — small S-curves. Aggressive curves on JPEG can posterize (create bands of flat tone instead of smooth gradation). The Point Curve is powerful but less forgiving on compressed files.</p>
+<p><strong>The four regions:</strong> Highlights (top right), Lights (upper middle), Darks (lower middle), Shadows (bottom left). You can drag each of these named sliders in Lightroom's Parametric Curve section instead of free-placing points — easier for beginners.</p>
+</div>
+</div>
+
+<!-- COLOR & WB -->
+<div class="preset-panel" id="preset-lr-color">
+<div class="card card-c"><h3>White Balance in Lightroom</h3>
+<div class="preset-row"><span class="preset-key">Temp slider</span><span class="preset-val">Blue ←→ Yellow/Orange</span><span class="preset-why">Drag right (higher Kelvin) to warm the image up. Drag left to cool it down. For your sunset/golden hour shots, try bumping Temp +200 to +500 to lean into the warmth. For overcast outdoor shots, a slight warm push (+100–200) removes the cold blue cast.</span></div>
+<div class="preset-row"><span class="preset-key">Tint slider</span><span class="preset-val">Green ←→ Magenta</span><span class="preset-why">Corrects green/magenta casts. Fluorescent lights (school hallways) often add green — drag toward magenta (+5 to +15) to fix. Rarely needs extreme values for outdoor shots.</span></div>
+<div class="preset-row"><span class="preset-key">Eyedropper</span><span class="preset-val">Click a neutral gray</span><span class="preset-why">Click the WB eyedropper on something in the image that should be pure neutral gray (concrete, white paper, asphalt). Lightroom auto-corrects the white balance based on that sample. Works great for indoor artificial light shots of the typewriter or cats.</span></div>
+</div>
+
+<div class="card card-p"><h3>HSL Panel — Individual Color Control</h3>
+<p>HSL stands for Hue, Saturation, Luminance. It lets you adjust each color independently. This is where photos go from corrected to creative.</p>
+<div class="preset-row"><span class="preset-key">Hue</span><span class="preset-val">Shifts the color itself</span><span class="preset-why">Change what shade a color is. Orange Hue +10 pushes skin/warm tones toward red. Blue Hue shifts sky between teal and purple. Useful but use sparingly — unnatural hue shifts are immediately noticeable.</span></div>
+<div class="preset-row"><span class="preset-key">Saturation</span><span class="preset-val">Intensity of that color</span><span class="preset-why">Crank up Blues saturation for a deeper sky. Boost Orange saturation for warmer sunset tones. Pull down Orange in portraits to reduce oversaturation of skin. Reducing one color's saturation while boosting another creates selective color effects.</span></div>
+<div class="preset-row"><span class="preset-key">Luminance</span><span class="preset-val">Brightness of that color</span><span class="preset-why">Most underused slider. Raising Blue Luminance brightens the sky without making it more saturated. Lowering Blue Luminance darkens skies dramatically for moody shots. Lowering Orange Luminance slightly deepens warm tones in architecture and skin.</span></div>
+</div>
+
+<div class="card card-b"><h3>Vibrance vs Saturation</h3>
+<p><strong>Saturation:</strong> Boosts ALL colors equally and aggressively. Pushing Saturation above +30 quickly makes images look cartoonish and blows out already-vivid colors. Use sparingly.</p>
+<p><strong>Vibrance:</strong> Boosts muted colors while protecting already-saturated colors and skin tones. It's a smarter version of Saturation. For almost all photos, use Vibrance instead of Saturation. +15 to +30 Vibrance is a standard starting point for adding life to a photo without overdoing it.</p>
+<p><strong>For FZ20 shots:</strong> FZ20 JPEGs tend to be slightly undersaturated in overcast light and slightly oversaturated in direct sun. In overcast: +Vibrance +15–25. In direct sun: -Saturation slightly (-5 to -10) to prevent oranges and reds from clipping.</p>
+</div>
+</div>
+
+<!-- DETAIL -->
+<div class="preset-panel" id="preset-lr-detail">
+<div class="card card-c"><h3>Sharpening — Making the FZ20 Look Its Best</h3>
+<p>The FZ20's CCD sensor and Leica lens actually produce quite sharp images in good light. In-camera JPEG sharpening is already applied. In Lightroom, you're adding a second layer — be careful not to oversharpen, which creates halos around edges and emphasizes noise.</p>
+<div class="preset-row"><span class="preset-key">Amount</span><span class="preset-val">40–60 for FZ20 JPEGs</span><span class="preset-why">How much sharpening is applied. FZ20 JPEGs are already sharpened in camera. 40–60 adds a gentle additional layer. Above 80 will create visible halos and emphasize the CCD's noise.</span></div>
+<div class="preset-row"><span class="preset-key">Radius</span><span class="preset-val">0.8–1.2</span><span class="preset-why">How wide the sharpening halo extends around edges. For the FZ20's pixel density, keep this at 1.0 or below. Higher values sharpen broader areas and look artificial.</span></div>
+<div class="preset-row"><span class="preset-key">Detail</span><span class="preset-val">25–50</span><span class="preset-why">Controls whether sharpening hits fine texture (high values) or only major edges (low values). For architecture and objects (typewriter), go up to 50. For cats and portraits, stay lower — you don't want to sharpen every individual fur strand.</span></div>
+<div class="preset-row"><span class="preset-key">Masking</span><span class="preset-val">20–60 for most shots</span><span class="preset-why">The most important sharpening slider. Hold Alt/Option while dragging — the image goes grayscale and shows you exactly where sharpening will be applied (white = sharpened, black = protected). Drag until only edges and textures are white, smooth surfaces are black. This prevents sharpening flat sky or skin, where it only amplifies noise.</span></div>
+</div>
+<div class="callout callout-w"><strong>Sharpening hack:</strong> Always check sharpening at 1:1 (100%) zoom, not at fit view. At fit view the image looks sharp regardless. Zoom in to 100% and check for halos around high-contrast edges — if you see white outlines, reduce Amount or increase Masking.</div>
+
+<div class="card card-p" style="margin-top:1rem;"><h3>Noise Reduction — Fixing ISO 200+ Shots</h3>
+<p>The FZ20's CCD shows noticeable luminance noise (grain) and color noise (random colored specks) above ISO 200. Lightroom's noise reduction is excellent even on JPEGs.</p>
+<div class="preset-row"><span class="preset-key">Luminance NR</span><span class="preset-val">15–30 for ISO 200</span><span class="preset-why">Smooths out the grain/texture noise. The tradeoff is softness — high values make images look plasticky. For ISO 200 FZ20 shots: 15–25 is the sweet spot. Increase Detail slider within NR to preserve some texture while reducing noise.</span></div>
+<div class="preset-row"><span class="preset-key">Color NR</span><span class="preset-val">25–40 default</span><span class="preset-why">Removes the random colored speckles (red/green/blue dots in shadows). The FZ20's CCD is prone to color noise in shadows even at ISO 100. Start at 25 — it's almost always an improvement. Unlike Luminance NR, Color NR has little quality cost at moderate values.</span></div>
+<div class="preset-row"><span class="preset-key">Sharpening + NR balance</span><span class="preset-val">Always apply NR before final sharpen</span><span class="preset-why">Apply noise reduction first, then check if you still need sharpening and apply it on top. Sharpening applied before NR will sharpen the noise itself, making it worse.</span></div>
+</div>
+</div>
+
+<!-- LOCAL TOOLS -->
+<div class="preset-panel" id="preset-lr-tools">
+<div class="card card-c"><h3>Masking &amp; Local Adjustments — The Real Power</h3>
+<p>Global adjustments affect the entire image. Local adjustments let you edit specific areas. These are what separate beginner edits from professional ones.</p>
+</div>
+
+<div class="card card-b"><h3>Graduated Filter (Linear Gradient)</h3>
+<p>Applies adjustments that fade across the image in a straight line. The most common use: darken a bright sky without affecting the ground.</p>
+<p><strong>How to use:</strong> Select Graduated Filter → drag from the top of the image downward to set the gradient → set Exposure -0.5 to -1.5 and/or Highlights -50 to pull the sky down while leaving the foreground alone. You can also add a blue Temp shift to make skies cooler and more dramatic.</p>
+<p><strong>Your use case — dead tree at sunset:</strong> Pull a graduated filter from the top down to darken and saturate the sky separately from the tree. Add a second gradient from the bottom up to slightly lift foreground shadows.</p>
+</div>
+
+<div class="card card-p"><h3>Radial Filter (Radial Gradient)</h3>
+<p>Applies adjustments inside or outside an ellipse. The best tool for: drawing attention to a subject, creating vignette-like effects with precision, brightening a cat's face without brightening the whole image.</p>
+<p><strong>How to use:</strong> Select Radial Filter → draw an oval around your subject → invert the mask (so the inside of the oval is affected) → brighten Exposure +0.3–0.5, boost Clarity +10–20. The edges of the oval automatically feather, so the effect blends naturally.</p>
+<p><strong>For Lincoln/Batman:</strong> Draw a radial filter oval around the cat → inside: boost Exposure +0.3, Shadows +20, Texture +15. This lifts the cat's detail without blowing the background. Add another radial filter tightly around the eye area and push Clarity +20 for sharper, more defined eyes.</p>
+</div>
+
+<div class="card card-g"><h3>Brush Tool — Paint Adjustments Anywhere</h3>
+<p>Lets you paint edits onto any specific area with a brush. The most flexible local tool.</p>
+<p><strong>How to use:</strong> Select Brush → set Size, Feather, Flow → paint over the area you want to affect → adjust sliders for that area only.</p>
+<p><strong>Best uses for your photos:</strong></p>
+<ul>
+<li><strong>Typewriter:</strong> Paint Clarity +20–30 onto the metal keys for extra texture and definition. Paint Shadows +20 on darker areas to reveal detail.</li>
+<li><strong>Architecture:</strong> Paint Shadows +15–25 onto the shadowed underside of a building separately from the sunlit face.</li>
+<li><strong>Cats — eye enhancement:</strong> Very small brush, paint Clarity +25, Exposure +0.3 onto each eye. This is subtle but makes a huge difference.</li>
+<li><strong>Reducing distracting elements:</strong> Paint Exposure -0.5 onto a background object that's too bright and drawing attention away from your subject.</li>
+</ul>
+</div>
+
+<div class="card card-c"><h3>Vignette (Effects Panel)</h3>
+<p>Darkens the corners and edges of the image, drawing the eye toward the center. One of the most overused effects — use subtly.</p>
+<p><strong>Amount:</strong> -10 to -25 is tasteful. Below -40 looks heavy-handed unless you're going for an intentional old-photograph look.<br>
+<strong>Midpoint:</strong> How far the vignette extends toward the center. Higher midpoint = tighter, more concentrated darkening at corners.<br>
+<strong>Feather:</strong> How soft the transition is. Always keep this high (80–100) unless you want a hard oval border effect.<br>
+<strong>Roundness:</strong> Shape of the vignette — 0 is rectangular, +100 is circular.</p>
+<p><strong>For FZ20 shots:</strong> A subtle vignette (-10 to -20, Feather 85) works well for architecture, cats on a perch, and objects like the typewriter. It makes the subject feel contained without being obvious.</p>
+</div>
+
+<div class="card card-p"><h3>Clarity vs Texture vs Dehaze</h3>
+<p>These three are often confused. They all add "punch" but in very different ways.</p>
+<p><strong>Texture (+10 to +25):</strong> Enhances fine mid-frequency details — fur, brick texture, typewriter metal, fabric, bark. Subtle and natural-looking. Great for everything. Rarely hurts a photo at moderate values.</p>
+<p><strong>Clarity (+10 to +30):</strong> Adds contrast at medium-sized edges — makes objects feel crisp and substantial. Great for architecture, objects, landscapes. Bad for portraits and cats at high values — makes every pore and fur strand look harsh. Use on subjects, not faces.</p>
+<p><strong>Dehaze (+5 to +20):</strong> Removes atmospheric haze — increases contrast and saturation simultaneously. Good for distant cityscapes, foggy architecture, flat overcast shots. Easy to overdo — above +30 it makes images look artificially crunchy. Also useful in reverse (-10 to -20) to add a soft hazy/dreamy look.</p>
+</div>
+</div>
+
+<!-- BY SUBJECT -->
+<div class="preset-panel" id="preset-lr-subjects">
+<div class="card card-c"><h3>Architecture & Urban — Edit Recipe</h3>
+<div class="preset-row"><span class="preset-key">WB</span><span class="preset-val">Slightly warm</span><span class="preset-why">+100–200 Temp. Concrete and brick look better warm than cool. Avoid sterile blue-white look unless it's intentional.</span></div>
+<div class="preset-row"><span class="preset-key">Exposure</span><span class="preset-val">±0.3 correction</span><span class="preset-why">Fine-tune only. You should have exposed correctly in camera.</span></div>
+<div class="preset-row"><span class="preset-key">Highlights</span><span class="preset-val">-30 to -60</span><span class="preset-why">Recover sky and bright surfaces. Don't push too far on JPEGs.</span></div>
+<div class="preset-row"><span class="preset-key">Shadows</span><span class="preset-val">+20 to +40</span><span class="preset-why">Open up dark areas of buildings — reveal brick detail, window interior.</span></div>
+<div class="preset-row"><span class="preset-key">Blacks</span><span class="preset-val">-15 to -25</span><span class="preset-why">Deepen the darkest shadows for richness and depth.</span></div>
+<div class="preset-row"><span class="preset-key">Clarity</span><span class="preset-val">+15 to +30</span><span class="preset-why">Architecture loves clarity. Makes edges crisp and stone/metal textures pop.</span></div>
+<div class="preset-row"><span class="preset-key">Blue Luminance (HSL)</span><span class="preset-val">-10 to -25</span><span class="preset-why">Darkens the sky without changing its color. One of the most effective single moves for dramatic architectural shots.</span></div>
+<div class="preset-row"><span class="preset-key">Graduated Filter</span><span class="preset-val">Top → down, Exp -0.7</span><span class="preset-why">Pull the sky down to balance it with the building. Standard move for any building-against-sky shot.</span></div>
+</div>
+
+<div class="card card-p" style="margin-top:1rem;"><h3>Lincoln & Batman — Black Cat Edit Recipe</h3>
+<div class="preset-row"><span class="preset-key">Exposure</span><span class="preset-val">0 to +0.3</span><span class="preset-why">Very slight lift if the cat feels too dark overall. Don't push — black cats should be dark.</span></div>
+<div class="preset-row"><span class="preset-key">Shadows</span><span class="preset-val">+15 to +35</span><span class="preset-why">Lift shadow detail in the fur — reveal the texture and shape. This is the key move for black cat photos.</span></div>
+<div class="preset-row"><span class="preset-key">Blacks</span><span class="preset-val">-5 to -15</span><span class="preset-why">Keep the deepest blacks truly black even while lifting shadows. Prevents the flat gray look.</span></div>
+<div class="preset-row"><span class="preset-key">Texture</span><span class="preset-val">+15 to +25</span><span class="preset-why">Brings out individual fur detail beautifully. More natural-looking than Clarity for organic subjects.</span></div>
+<div class="preset-row"><span class="preset-key">WB (indoors)</span><span class="preset-val">WB eyedropper on neutral surface</span><span class="preset-why">Click the eyedropper on a gray or white surface near the cat (wall, floor). Removes the orange lamp cast immediately.</span></div>
+<div class="preset-row"><span class="preset-key">Color NR</span><span class="preset-val">+25–35</span><span class="preset-why">Black cat shadows have a lot of color noise from the FZ20's CCD. This cleans it up and makes the fur look intentionally black rather than noisy.</span></div>
+<div class="preset-row"><span class="preset-key">Radial Filter — eye</span><span class="preset-val">Oval around eye, Clarity +20</span><span class="preset-why">The eye is the soul of a cat photo. A small tight radial filter adding Clarity + slight Exposure boost to each eye is the single highest-impact local edit for cat photos.</span></div>
+<div class="preset-row"><span class="preset-key">Vignette</span><span class="preset-val">-15, Feather 85</span><span class="preset-why">Subtle vignette keeps the eye on the cat. Works especially well for window perch shots.</span></div>
+</div>
+
+<div class="card card-b" style="margin-top:1rem;"><h3>Typewriter / Objects — Edit Recipe</h3>
+<div class="preset-row"><span class="preset-key">WB</span><span class="preset-val">Depends on intent</span><span class="preset-why">Warm (Incandescent → manually warm up Temp) for nostalgic/cinematic feel. Cool-neutral (Daylight) for clean product-style look. The typewriter suits warm tones — lean into it.</span></div>
+<div class="preset-row"><span class="preset-key">Contrast</span><span class="preset-val">+20 to +35</span><span class="preset-why">Objects on a desk need separation from the background. Contrast creates that sense of depth and substance.</span></div>
+<div class="preset-row"><span class="preset-key">Texture</span><span class="preset-val">+20 to +35</span><span class="preset-why">Typewriter keys, metal surface, fabric background — texture is everything. This is the most important slider for objects.</span></div>
+<div class="preset-row"><span class="preset-key">Clarity</span><span class="preset-val">+15 to +25</span><span class="preset-why">Crisp edges on mechanical objects. Makes the typewriter look tactile and real.</span></div>
+<div class="preset-row"><span class="preset-key">Shadows</span><span class="preset-val">+10 to +20 or 0</span><span class="preset-why">Lift if you want to see shadow detail on the side of the typewriter. Or leave at 0 if you want the moody low-key look — shadows can be the design.</span></div>
+<div class="preset-row"><span class="preset-key">Vignette</span><span class="preset-val">-20 to -30</span><span class="preset-why">Stronger vignette than usual for objects — it frames the subject tightly and separates it from the desk surface.</span></div>
+</div>
+
+<div class="card card-g" style="margin-top:1rem;"><h3>Nature & Sunsets — Edit Recipe</h3>
+<div class="preset-row"><span class="preset-key">WB</span><span class="preset-val">Temp +200 to +600</span><span class="preset-why">For sunsets, lean into warmth aggressively. AWB or Daylight WB in camera was probably conservative. In Lightroom, push the warmth to what it actually looked like to your eye — often much warmer than the file suggests.</span></div>
+<div class="preset-row"><span class="preset-key">Highlights</span><span class="preset-val">-40 to -80</span><span class="preset-why">Recover sky detail. Pull Highlights down until you see cloud texture and gradient. Don't go so far that the sky looks gray — you want warm, not gray.</span></div>
+<div class="preset-row"><span class="preset-key">Shadows</span><span class="preset-val">+20 to +40</span><span class="preset-why">For the dead tree or foreground elements that went dark. Lift shadows to reveal silhouette detail without brightening the sky.</span></div>
+<div class="preset-row"><span class="preset-key">Orange Saturation (HSL)</span><span class="preset-val">+15 to +25</span><span class="preset-why">Sunsets live in the orange-red range. Boost Orange saturation to deepen the color. Add Red saturation +10 too. Avoid pushing Yellow — it can look toxic.</span></div>
+<div class="preset-row"><span class="preset-key">Blue Luminance (HSL)</span><span class="preset-val">-10 to -20</span><span class="preset-why">Darkens any remaining blue sky areas for more drama. Helps the orange/gold sunset pop more by contrast.</span></div>
+<div class="preset-row"><span class="preset-key">Graduated filter</span><span class="preset-val">Top down: Temp +200, Sat +10</span><span class="preset-why">Add extra warmth selectively to the sky area without warming the foreground excessively.</span></div>
+<div class="preset-row"><span class="preset-key">Dehaze</span><span class="preset-val">+5 to +15</span><span class="preset-why">Cuts haze in distant sky and adds saturation simultaneously. Very effective for Cleveland/industrial horizon shots.</span></div>
+</div>
+</div>
+
+<!-- EXPORT -->
+<div class="preset-panel" id="preset-lr-export">
+<div class="card card-c"><h3>Export Settings — Where Is This Photo Going?</h3>
+
+<div class="preset-row"><span class="preset-key">For Instagram / Social</span><span class="preset-val">JPEG, sRGB, 80–90% quality</span><span class="preset-why">Resize to 2048px on the long edge. sRGB color space — phones and social platforms use sRGB, not AdobeRGB. 80–90% JPEG quality is virtually indistinguishable from 100% at a fraction of the file size.</span></div>
+<div class="preset-row"><span class="preset-key">For Storage / Archive</span><span class="preset-val">JPEG, sRGB, 100% quality</span><span class="preset-why">Keep full-size, max quality for archival. These are your master files. Don't downscale archives.</span></div>
+<div class="preset-row"><span class="preset-key">For Printing</span><span class="preset-val">JPEG or TIFF, AdobeRGB, 300 PPI</span><span class="preset-why">AdobeRGB has a wider gamut for print. 300 PPI for the print size — a 2560×1920px FZ20 file prints cleanly at about 8.5×6.4" at 300 PPI. Don't upscale significantly.</span></div>
+<div class="preset-row"><span class="preset-key">Sharpening on export</span><span class="preset-val">Screen: Standard. Print: Standard or High.</span><span class="preset-why">Lightroom's output sharpening applies a final pass optimized for the output type. For social media, Screen + Standard. For print, Print + Standard or High.</span></div>
+<div class="preset-row"><span class="preset-key">Color Space</span><span class="preset-val">sRGB for everything digital</span><span class="preset-why">Unless specifically printing, always export sRGB. AdobeRGB files look desaturated on screens that don't support it — most phones and websites.</span></div>
+</div>
+
+<div class="card card-p"><h3>Lightroom Mobile — Editing on Your Phone</h3>
+<p>If you don't have desktop Lightroom, Lightroom Mobile (free) on iOS/Android has most of the same sliders and is worth using. You can import photos from your FZ20 via USB or SD card reader adapter.</p>
+<p><strong>The free version includes:</strong> All Light panel sliders, Color/WB, Detail, Crop, some local tools (limited). It does not include advanced masking or full HSL in the free version.</p>
+<p><strong>Sync workflow:</strong> If you have a Creative Cloud subscription, edits sync across desktop and mobile automatically. If not, Lightroom Mobile still works as a standalone mobile editor.</p>
+<p><strong>Adobe Camera Raw:</strong> If you're on a Mac with Photos app or using Photoshop, Camera Raw has the same interface as Lightroom's Develop module. Everything in this guide applies to Camera Raw identically.</p>
+</div>
+
+<div class="callout callout-c"><strong>Free alternatives if you don't have Lightroom:</strong> RawTherapee (free, Windows/Mac/Linux — powerful but complex), darktable (free, similar to Lightroom), Snapseed (free mobile app — surprisingly capable, especially the Selective tool which functions like a radial brush). For casual editing, Snapseed covers about 70% of what's described here in a much simpler interface.</div>
+</div>
+
+</div><!-- end lightroom preset panels -->
+</div><!-- end lightroom section -->
+
+
 <footer>FZ20 Photography Masterclass · Cleveland / Chicago · Architecture · Cats · Nature · Objects · Motion · People · 30-Day Program</footer>
 
 <script>
