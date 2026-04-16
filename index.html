@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -296,6 +297,42 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 .step-body{flex:1;}
 .step-body strong{font-size:.88rem;color:var(--white);display:block;margin-bottom:.25rem;}
 .step-body p{font-size:.79rem;color:var(--text);line-height:1.65;}
+/* COLOR GRADING */
+.wheel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin:1.2rem 0;}
+.wheel-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.3rem;text-align:center;position:relative;overflow:hidden;}
+.wheel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.wheel-shadows::before{background:linear-gradient(90deg,#1a1a2e,#0f3460,#1a1a2e);}
+.wheel-mids::before{background:linear-gradient(90deg,#a78bfa,#22d3ee,#34d399);}
+.wheel-highs::before{background:linear-gradient(90deg,#fbbf24,#f87171,#f0f6ff);}
+.wheel-name{font-weight:800;font-size:.95rem;color:var(--white);margin-bottom:.2rem;}
+.wheel-range{font-family:'Space Mono',Courier,monospace;font-size:.58rem;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem;}
+.wheel-desc{font-size:.75rem;color:var(--text);line-height:1.6;text-align:left;}
+.color-combo-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.2rem 0;}
+.color-combo{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.2rem;}
+.combo-swatch{display:flex;gap:.4rem;margin-bottom:.8rem;}
+.swatch{width:28px;height:28px;border-radius:50%;border:2px solid rgba(255,255,255,.1);flex-shrink:0;}
+.combo-name{font-weight:800;font-size:.85rem;color:var(--white);margin-bottom:.25rem;}
+.combo-recipe{font-family:'Space Mono',Courier,monospace;font-size:.62rem;color:var(--cyan);margin-bottom:.4rem;}
+.combo-desc{font-size:.75rem;color:var(--text);line-height:1.55;}
+/* MASKING */
+.mask-type-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.2rem 0;}
+.mask-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.2rem;}
+.mask-icon{font-size:1.4rem;margin-bottom:.5rem;}
+.mask-name{font-weight:800;font-size:.88rem;color:var(--white);margin-bottom:.25rem;}
+.mask-when{font-family:'Space Mono',Courier,monospace;font-size:.58rem;color:var(--purple);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem;}
+.mask-desc{font-size:.76rem;color:var(--text);line-height:1.6;}
+.mask-tip{font-size:.72rem;color:var(--cyan);margin-top:.5rem;}
+.intersect-row{display:flex;align-items:flex-start;gap:.8rem;padding:.6rem 0;border-bottom:1px solid var(--border);}
+.intersect-row:last-child{border-bottom:none;}
+.intersect-op{font-family:'Space Mono',Courier,monospace;font-size:.68rem;color:var(--gold);min-width:72px;flex-shrink:0;margin-top:.1rem;}
+.intersect-desc{color:var(--text);font-size:.76rem;line-height:1.55;}
+@media(max-width:680px){
+  .wheel-grid,.color-combo-grid,.mask-type-grid,.price-grid{grid-template-columns:1fr;}
+  .shop-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:420px){
+  .shop-grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
@@ -325,12 +362,15 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
   <button onclick="showSection('plan',this)">⑥ 30-Day Plan</button>
   <button onclick="showSection('mistakes',this)">⑦ Mistakes</button>
   <button onclick="showSection('lightroom',this)">⑧ Lightroom</button>
-  <button onclick="showSection('shop',this)">⑨ Sell Your Work</button>
+  <button onclick="showSection('colorgrade',this)">⑨ Color Grading</button>
+  <button onclick="showSection('masking',this)">⑩ Masking</button>
+  <button onclick="showSection('shop',this)">⑪ Sell Your Work</button>
 </nav>
 
 <main>
 
 <!-- §1 CAMERA SYSTEM -->
+
 <div class="section active" id="camera">
 <div class="sec-title">Your <span class="hl-c">FZ20</span> — Full System Breakdown</div>
 <div class="sec-sub">Hardware specs · Core concepts · How it actually works</div>
@@ -363,6 +403,7 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 </div>
 
 <!-- §2 MODES -->
+
 <div class="section" id="modes">
 <div class="sec-title">Mode <span class="hl-c">Dial</span> — Every Mode Explained</div>
 <div class="sec-sub">What each mode does internally · When to use it · Click to expand</div>
@@ -400,6 +441,7 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 </div>
 
 <!-- §3 SETTINGS -->
+
 <div class="section" id="settings">
 <div class="sec-title">Camera <span class="hl-c">Settings</span> — What to Change Now</div>
 <div class="sec-sub">Immediate improvements · Default learning setup · Hidden features</div>
@@ -430,6 +472,7 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 </div>
 
 <!-- §4 PRESETS -->
+
 <div class="section" id="presets">
 <div class="sec-title">Shooting <span class="hl-c">Presets</span></div>
 <div class="sec-sub">Exact settings for every subject · Workflow in order · Why each setting matters</div>
@@ -558,6 +601,7 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 </div>
 
 <!-- §5 CHEAT SHEET -->
+
 <div class="section" id="cheat">
 <div class="sec-title">Exposure <span class="hl-c">Cheat Sheet</span> <span class="hl-p">▲</span></div>
 <div class="sec-sub">FZ20-specific values · Every subject at a glance · Settings triangle · Quick reference</div>
@@ -671,6 +715,7 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 </div>
 
 <!-- §6 30-DAY PLAN -->
+
 <div class="section" id="plan">
 <div class="sec-title"><span class="hl-c">30-Day</span> Photography Program</div>
 <div class="sec-sub">Progressive missions · Your environments · Click weeks to expand</div>
@@ -735,6 +780,7 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 </div>
 
 <!-- §7 MISTAKES -->
+
 <div class="section" id="mistakes">
 <div class="sec-title">Beginner <span class="hl-p">Mistakes</span></div>
 <div class="sec-sub">What goes wrong · Why · The exact fix · FZ20-specific</div>
@@ -754,6 +800,7 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 </div>
 
 <!-- §8 LIGHTROOM -->
+
 <div class="section" id="lightroom">
 <div class="sec-title"><span class="hl-c">Lightroom</span> Editing Tutorial</div>
 <div class="sec-sub">What every tool does · How to use it · FZ20 JPEG workflow · Your subjects specifically</div>
@@ -761,6 +808,7 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 <div class="callout callout-c"><strong>Important context for FZ20 files:</strong> Your camera shoots JPEG only — not RAW. This means some editing headroom is lost compared to RAW files. JPEGs are already processed by the camera. You can still do a lot, but be gentler with aggressive adjustments — especially Shadows and Highlights — because JPEG doesn't hold up as well as RAW when pushed hard. Work with finesse, not force.</div>
 
 <!-- PANEL TABS for LR sections -->
+
 <div class="preset-tabs">
   <button class="preset-tab active" onclick="showPreset('lr-workflow')">Workflow Order</button>
   <button class="preset-tab" onclick="showPreset('lr-light')">Light Panel</button>
@@ -772,6 +820,7 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 </div>
 
 <!-- WORKFLOW ORDER -->
+
 <div class="preset-panel active" id="preset-lr-workflow">
 <div class="card card-c"><h3>The Right Order to Edit — Always Follow This <span class="badge badge-c">START HERE</span></h3>
 <p>Editing in the wrong order wastes time and creates compounding problems. Always go top-to-bottom in the Develop module in this order:</p>
@@ -790,6 +839,7 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 </div>
 
 <!-- LIGHT PANEL -->
+
 <div class="preset-panel" id="preset-lr-light">
 <div class="card card-p"><h3>The Light Panel — Every Slider Explained</h3>
 
@@ -810,6 +860,7 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 </div>
 
 <!-- COLOR & WB -->
+
 <div class="preset-panel" id="preset-lr-color">
 <div class="card card-c"><h3>White Balance in Lightroom</h3>
 <div class="preset-row"><span class="preset-key">Temp slider</span><span class="preset-val">Blue ←→ Yellow/Orange</span><span class="preset-why">Drag right (higher Kelvin) to warm the image up. Drag left to cool it down. For your sunset/golden hour shots, try bumping Temp +200 to +500 to lean into the warmth. For overcast outdoor shots, a slight warm push (+100–200) removes the cold blue cast.</span></div>
@@ -832,6 +883,7 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 </div>
 
 <!-- DETAIL -->
+
 <div class="preset-panel" id="preset-lr-detail">
 <div class="card card-c"><h3>Sharpening — Making the FZ20 Look Its Best</h3>
 <p>The FZ20's CCD sensor and Leica lens actually produce quite sharp images in good light. In-camera JPEG sharpening is already applied. In Lightroom, you're adding a second layer — be careful not to oversharpen, which creates halos around edges and emphasizes noise.</p>
@@ -851,6 +903,7 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 </div>
 
 <!-- LOCAL TOOLS -->
+
 <div class="preset-panel" id="preset-lr-tools">
 <div class="card card-c"><h3>Masking &amp; Local Adjustments — The Real Power</h3>
 <p>Global adjustments affect the entire image. Local adjustments let you edit specific areas. These are what separate beginner edits from professional ones.</p>
@@ -898,6 +951,7 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 </div>
 
 <!-- BY SUBJECT -->
+
 <div class="preset-panel" id="preset-lr-subjects">
 <div class="card card-c"><h3>Architecture & Urban — Edit Recipe</h3>
 <div class="preset-row"><span class="preset-key">WB</span><span class="preset-val">Slightly warm</span><span class="preset-why">+100–200 Temp. Concrete and brick look better warm than cool. Avoid sterile blue-white look unless it's intentional.</span></div>
@@ -942,6 +996,7 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 </div>
 
 <!-- EXPORT -->
+
 <div class="preset-panel" id="preset-lr-export">
 <div class="card card-c"><h3>Export Settings — Where Is This Photo Going?</h3>
 
@@ -965,9 +1020,434 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 </div><!-- end lightroom preset panels -->
 </div><!-- end lightroom section -->
 
+<!-- §9 COLOR GRADING -->
 
+<div class="section" id="colorgrade">
+<div class="sec-title"><span class="hl-c">Color Grading</span></div>
+<div class="sec-sub">The three color wheels · How to use them · Looks for your subjects · Color theory for photographers</div>
 
-<!-- §9 SELL YOUR WORK -->
+<div class="callout callout-c"><strong>Color grading vs color correction:</strong> Color <em>correction</em> is fixing problems — removing a green cast, getting white balance accurate. Color <em>grading</em> is intentional creative choice — making shadows go teal, warming the highlights, creating a cinematic look. You always correct first, then grade. Think of correction as making the photo accurate, and grading as making it yours.</div>
+
+<div class="preset-tabs">
+  <button class="preset-tab active" onclick="showPreset('cg-wheels')">The Three Wheels</button>
+  <button class="preset-tab" onclick="showPreset('cg-theory')">Color Theory</button>
+  <button class="preset-tab" onclick="showPreset('cg-looks')">Looks for Your Subjects</button>
+  <button class="preset-tab" onclick="showPreset('cg-global')">Global Color Tools</button>
+  <button class="preset-tab" onclick="showPreset('cg-practice')">Practice Exercises</button>
+</div>
+
+<!-- THE THREE WHEELS -->
+
+<div class="preset-panel active" id="preset-cg-wheels">
+<div class="card card-c">
+  <h3>Where to Find the Color Grading Panel</h3>
+  <p>In Lightroom's Develop module, scroll down past HSL/Color to find <strong>Color Grading</strong>. You'll see three circular color wheels labeled <strong>Shadows</strong>, <strong>Midtones</strong>, and <strong>Highlights</strong>, plus a central dot and a luminance slider under each. There's also a fourth "Global" wheel that affects everything at once. Click the three-circle icon at the top to see all three wheels simultaneously.</p>
+</div>
+
+<div class="wheel-grid">
+  <div class="wheel-card wheel-shadows">
+    <svg class="wheel-svg" width="90" height="90" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+      <defs><radialGradient id="sg" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff" stop-opacity=".9"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+      <circle cx="45" cy="45" r="42" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+      <circle cx="45" cy="45" r="38" fill="url(#sg)" opacity=".03"/>
+      <!-- Color ring -->
+      <path d="M45 7 A38 38 0 0 1 83 45" fill="none" stroke="#22d3ee" stroke-width="5" stroke-linecap="round"/>
+      <path d="M83 45 A38 38 0 0 1 58 78" fill="none" stroke="#a78bfa" stroke-width="5" stroke-linecap="round"/>
+      <path d="M58 78 A38 38 0 0 1 7 45" fill="none" stroke="#1e3055" stroke-width="5" stroke-linecap="round"/>
+      <path d="M7 45 A38 38 0 0 1 45 7" fill="none" stroke="#3b82f6" stroke-width="5" stroke-linecap="round"/>
+      <!-- Center dot -->
+      <circle cx="45" cy="45" r="5" fill="rgba(34,211,238,.4)" stroke="var(--cyan)" stroke-width="1.5"/>
+      <text x="45" y="50" text-anchor="middle" font-family="monospace" font-size="6" fill="rgba(255,255,255,.3)">DRAG</text>
+    </svg>
+    <div class="wheel-name">Shadows</div>
+    <div class="wheel-range">Darkest 25% of tones</div>
+    <div class="wheel-desc">Controls the color tint applied to the <strong>darkest parts</strong> of your image — deep blacks, dark corners, shadowed areas of buildings, the dark fur on Lincoln.<br><br><strong>How to use:</strong> Drag the center dot toward a color to tint the shadows that color. Drag it toward blue/teal to make shadows cooler. Push toward orange/amber for warm shadows. The farther from center you drag, the stronger the effect.<br><br><strong>Luminance slider (under the wheel):</strong> Raises or lowers the overall brightness of the shadows independently of color. Different from the Shadows slider in the Light panel — this one applies after your color grade.</div>
+  </div>
+  <div class="wheel-card wheel-mids">
+    <svg class="wheel-svg" width="90" height="90" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="45" cy="45" r="42" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+      <path d="M45 7 A38 38 0 0 1 83 45" fill="none" stroke="#fbbf24" stroke-width="5" stroke-linecap="round"/>
+      <path d="M83 45 A38 38 0 0 1 58 78" fill="none" stroke="#34d399" stroke-width="5" stroke-linecap="round"/>
+      <path d="M58 78 A38 38 0 0 1 7 45" fill="none" stroke="#a78bfa" stroke-width="5" stroke-linecap="round"/>
+      <path d="M7 45 A38 38 0 0 1 45 7" fill="none" stroke="#f87171" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="45" cy="45" r="5" fill="rgba(167,139,250,.4)" stroke="var(--purple)" stroke-width="1.5"/>
+      <text x="45" y="50" text-anchor="middle" font-family="monospace" font-size="6" fill="rgba(255,255,255,.3)">DRAG</text>
+    </svg>
+    <div class="wheel-name">Midtones</div>
+    <div class="wheel-range">Middle 50% of tones</div>
+    <div class="wheel-desc">Controls the color in the <strong>middle brightness range</strong> — most of your subject matter lives here. Brick walls, faces, cat fur, sky at mid-exposure, architecture detail.<br><br><strong>How to use:</strong> This wheel has the most visible impact because midtones are the bulk of any image. Subtle moves go a long way — drag just 5–10% from center to start. Strong midtone color shifts define an image's overall mood.<br><br><strong>This is your primary creative wheel.</strong> More often than not, your shadow and highlight tweaks are supporting the look you set here first.</div>
+  </div>
+  <div class="wheel-card wheel-highs">
+    <svg class="wheel-svg" width="90" height="90" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="45" cy="45" r="42" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+      <path d="M45 7 A38 38 0 0 1 83 45" fill="none" stroke="#fde68a" stroke-width="5" stroke-linecap="round"/>
+      <path d="M83 45 A38 38 0 0 1 58 78" fill="none" stroke="#fed7aa" stroke-width="5" stroke-linecap="round"/>
+      <path d="M58 78 A38 38 0 0 1 7 45" fill="none" stroke="#e0f2fe" stroke-width="5" stroke-linecap="round"/>
+      <path d="M7 45 A38 38 0 0 1 45 7" fill="none" stroke="#f0fdf4" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="45" cy="45" r="5" fill="rgba(251,191,36,.4)" stroke="var(--gold)" stroke-width="1.5"/>
+      <text x="45" y="50" text-anchor="middle" font-family="monospace" font-size="6" fill="rgba(255,255,255,.3)">DRAG</text>
+    </svg>
+    <div class="wheel-name">Highlights</div>
+    <div class="wheel-range">Brightest 25% of tones</div>
+    <div class="wheel-desc">Controls color in the <strong>brightest areas</strong> — sky, clouds, sun-lit surfaces, bright windows, light-colored walls.<br><br><strong>How to use:</strong> Push toward warm/yellow-orange to make bright areas feel golden and sunny. Push toward cool/blue-white for a crisp, clean, airy feel. This wheel pairs with Shadows to create <em>split-toning</em> — the single most powerful color grading technique.<br><br><strong>Keep moves subtle here</strong> — bright areas show color shifts very easily. A tiny pull toward orange or teal in highlights is often all you need.</div>
+  </div>
+</div>
+
+<div class="card card-p">
+  <h3>The Center Dot — How Dragging Actually Works</h3>
+  <p>Each wheel has a small dot in the center. <strong>Dragging the dot</strong> toward any edge pushes that color into the tonal range. The direction you drag determines the hue. The distance from center determines the intensity.</p>
+  <p style="margin-top:.6rem;"><strong>Important — the dot starts at dead center (neutral).</strong> If you drag it and the image looks wrong, drag it back to center to reset. You can also double-click the dot to reset it to neutral.</p>
+  <p style="margin-top:.6rem;"><strong>The luminance slider below each wheel</strong> is separate from the color — it only adjusts the brightness of that tonal range without changing the color tint you've applied. Use it after you've set the color to fine-tune the overall brightness balance.</p>
+</div>
+
+<div class="card card-b">
+  <h3>Split Toning — The Most Useful Technique</h3>
+  <p>Split toning means applying <strong>one color to shadows and a different (usually opposite) color to highlights</strong>. The contrast between cool shadows and warm highlights — or vice versa — is what gives photos that "film" or "cinematic" quality that looks intentional rather than accidental.</p>
+  <p style="margin-top:.6rem;"><strong>The classic split tone:</strong> Shadows → push toward blue/teal. Highlights → push toward orange/yellow. This is the most widely used color grade in photography and film. It works because warm and cool are complementary — they contrast each other and create visual depth.</p>
+  <p style="margin-top:.6rem;"><strong>Why it works on your photos:</strong> Urban architecture has lots of both warm surfaces (brick, concrete in sun) and cool shadows (under overhangs, alleyways). Split toning amplifies these natural contrasts rather than fighting them.</p>
+</div>
+</div>
+
+<!-- COLOR THEORY -->
+
+<div class="preset-panel" id="preset-cg-theory">
+<div class="card card-c">
+  <h3>Color Theory You Actually Need to Know</h3>
+  <p>You don't need to memorize color theory textbooks. You need three concepts: complementary colors, temperature, and what different colors feel like emotionally.</p>
+</div>
+
+<div class="card card-p">
+  <h3>Complementary Colors — The Foundation of All Color Grading</h3>
+  <p>Complementary colors sit opposite each other on the color wheel. They create maximum contrast when placed together, which is why they look so visually satisfying.</p>
+  <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin:1rem 0;">
+    <div style="background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3);border-radius:6px;padding:.8rem 1rem;flex:1;min-width:130px;text-align:center;">
+      <div style="font-family:'Space Mono',Courier,monospace;font-size:.65rem;color:var(--cyan);margin-bottom:.3rem;">TEAL ↔ ORANGE</div>
+      <div style="font-size:.72rem;color:var(--text);">The most popular grade in cinema. Teal shadows + orange skin/warmth. Works especially well for urban + portrait shots.</div>
+    </div>
+    <div style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.3);border-radius:6px;padding:.8rem 1rem;flex:1;min-width:130px;text-align:center;">
+      <div style="font-family:'Space Mono',Courier,monospace;font-size:.65rem;color:var(--purple);margin-bottom:.3rem;">BLUE ↔ YELLOW</div>
+      <div style="font-size:.72rem;color:var(--text);">Cool blue shadows + warm golden highlights. Classic for architecture, golden hour, and moody cityscapes.</div>
+    </div>
+    <div style="background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);border-radius:6px;padding:.8rem 1rem;flex:1;min-width:130px;text-align:center;">
+      <div style="font-family:'Space Mono',Courier,monospace;font-size:.65rem;color:var(--gold);margin-bottom:.3rem;">GREEN ↔ MAGENTA</div>
+      <div style="font-size:.72rem;color:var(--text);">Natural/earthy feel. Green shadows with magenta highlights. Good for nature and park shots.</div>
+    </div>
+  </div>
+  <p><strong>Rule of thumb:</strong> If you push shadows toward one complementary color, push highlights toward the other. You don't have to — monochromatic grades (shadows and highlights the same color, just different intensity) also work — but the complementary split is the most reliable starting point.</p>
+</div>
+
+<div class="card card-b">
+  <h3>What Colors Feel Like — Emotional Register</h3>
+  <div class="preset-row"><span class="preset-key">Orange/Amber</span><span class="preset-val">Warm, nostalgic, cozy</span><span class="preset-why">Golden hour, warmth, intimacy. Works for cats at home, sunsets, warmly-lit architecture. Your current instinct toward warm tones is tapping into this.</span></div>
+  <div class="preset-row"><span class="preset-key">Teal/Cyan</span><span class="preset-val">Cool, urban, cinematic</span><span class="preset-why">City at night, industrial, slightly melancholy. Works perfectly for Cleveland architecture, shadowed alleys, steel and glass buildings.</span></div>
+  <div class="preset-row"><span class="preset-key">Blue</span><span class="preset-val">Cold, distant, lonely</span><span class="preset-why">Winter, isolation, dusk. Good for overcast architecture and blue hour shots. Can feel sad or serene depending on context.</span></div>
+  <div class="preset-row"><span class="preset-key">Purple/Violet</span><span class="preset-val">Mysterious, twilight, dramatic</span><span class="preset-why">Dusk sky, late blue hour, moody shadows. Works for atmospheric night shots and silhouettes.</span></div>
+  <div class="preset-row"><span class="preset-key">Green</span><span class="preset-val">Natural, fresh, eerie</span><span class="preset-why">Nature shots, parks. At low saturation, a slight green shift can feel film-like. Too much looks unnatural fast.</span></div>
+  <div class="preset-row"><span class="preset-key">Desaturated</span><span class="preset-val">Timeless, elegant, serious</span><span class="preset-why">Pulling saturation and vibrance down creates a muted, faded look. Very popular for urban architecture and street photography.</span></div>
+</div>
+
+<div class="card card-g">
+  <h3>Color Temperature as a Storytelling Tool</h3>
+  <p>Temperature (Warm/Cool) is the most emotionally powerful axis in color. <strong>Warm photos feel welcoming, safe, nostalgic, alive.</strong> <strong>Cool photos feel distant, cinematic, lonely, or dramatic.</strong> Neither is better — they tell different stories.</p>
+  <p style="margin-top:.6rem;"><strong>For your cats:</strong> Warm tones make the photos feel intimate and cozy — a cat at home, safe and comfortable. Cool tones would make the same cat feel more mysterious or dramatic. Your instinct to shoot warm is the right call for the emotional story you're telling.</p>
+  <p style="margin-top:.6rem;"><strong>For your architecture:</strong> Cleveland's industrial character often suits cooler, more desaturated grades. The city has a steel-grey quality that feels authentic at lower temperatures. You can contrast this by finding warm pockets of light within that cool structure — which is exactly what makes split toning so effective for urban photography.</p>
+</div>
+</div>
+
+<!-- LOOKS FOR YOUR SUBJECTS -->
+
+<div class="preset-panel" id="preset-cg-looks">
+<p style="font-size:.82rem;color:var(--dim);margin-bottom:1.2rem;">These are complete Color Grading panel recipes. Apply them in the Color Grading panel <em>after</em> your Light panel corrections. Each specifies where to drag the wheel dot (direction + rough intensity) and the luminance adjustment.</p>
+
+<div class="color-combo-grid">
+  <div class="color-combo">
+    <div class="combo-swatch">
+      <div class="swatch" style="background:#1e3a5f;"></div>
+      <div class="swatch" style="background:#2a4a3e;"></div>
+      <div class="swatch" style="background:#c9843a;"></div>
+    </div>
+    <div class="combo-name">Cleveland Urban / Industrial</div>
+    <div class="combo-recipe">Shadows → Teal-Blue · Mids → Neutral · Highs → Warm Orange</div>
+    <div class="combo-desc">Push shadows toward teal-blue (about 20% from center toward upper-left). Leave midtones near neutral or very slight teal. Push highlights toward warm orange (about 15% toward upper-right). Result: cool industrial shadows with warm sunlit surfaces — amplifies Cleveland's steel-and-brick character.</div>
+  </div>
+  <div class="color-combo">
+    <div class="combo-swatch">
+      <div class="swatch" style="background:#0a1628;"></div>
+      <div class="swatch" style="background:#1a3a4a;"></div>
+      <div class="swatch" style="background:#f0c060;"></div>
+    </div>
+    <div class="combo-name">Golden Hour Warm</div>
+    <div class="combo-recipe">Shadows → Deep Blue · Mids → Slight Amber · Highs → Strong Gold</div>
+    <div class="combo-desc">Push shadows toward deep blue (25% toward bottom). Midtones slightly amber (10% toward right). Highlights toward golden yellow-orange (20% toward upper-right). Luminance on highlights +5. This takes already-warm golden hour shots and pushes them into cinematic territory.</div>
+  </div>
+  <div class="color-combo">
+    <div class="combo-swatch">
+      <div class="swatch" style="background:#0d1b2a;"></div>
+      <div class="swatch" style="background:#1a2a3a;"></div>
+      <div class="swatch" style="background:#e8e0d0;"></div>
+    </div>
+    <div class="combo-name">Moody Architecture / B&amp;W Adjacent</div>
+    <div class="combo-recipe">Shadows → Cold Blue · Mids → Desaturated · Highs → Pale Cream</div>
+    <div class="combo-desc">Push shadows toward cold blue (20% toward bottom-left). Midtones very slight cool (5% toward blue — barely off center). Highlights toward pale warm-white (10% toward upper-right). Pull global saturation to -20. Very desaturated, slightly cool, feels timeless and serious. Great for school architecture and geometric shots.</div>
+  </div>
+  <div class="color-combo">
+    <div class="combo-swatch">
+      <div class="swatch" style="background:#1a0a2e;"></div>
+      <div class="swatch" style="background:#0d1a2e;"></div>
+      <div class="swatch" style="background:#60a0c0;"></div>
+    </div>
+    <div class="combo-name">Blue Hour / Night City</div>
+    <div class="combo-recipe">Shadows → Deep Purple-Blue · Mids → Blue · Highs → Cyan-White</div>
+    <div class="combo-desc">Push shadows toward purple-blue (30% toward bottom-left). Midtones toward pure blue (15%). Highlights toward cool cyan (10% toward upper-left). Luminance on shadows -5. This grade makes night city shots feel dramatic and deep — the sky goes richer, the building lights pop warmer by contrast.</div>
+  </div>
+  <div class="color-combo">
+    <div class="combo-swatch">
+      <div class="swatch" style="background:#1a1a1a;"></div>
+      <div class="swatch" style="background:#2a2018;"></div>
+      <div class="swatch" style="background:#d4a060;"></div>
+    </div>
+    <div class="combo-name">Black Cat — Lamp Light</div>
+    <div class="combo-recipe">Shadows → Near Neutral (slight warm) · Mids → Warm Amber · Highs → Gold</div>
+    <div class="combo-desc">Shadows only 5% toward warm — barely off neutral, keeping the black genuinely dark. Midtones toward amber (15% right). Highlights toward gold-orange (20% upper-right). Luminance on shadows -5 to deepen the black fur. This preserves Lincoln's deep black while making the lamp light feel rich and inviting.</div>
+  </div>
+  <div class="color-combo">
+    <div class="combo-swatch">
+      <div class="swatch" style="background:#1a2a1a;"></div>
+      <div class="swatch" style="background:#203028;"></div>
+      <div class="swatch" style="background:#c0d8a0;"></div>
+    </div>
+    <div class="combo-name">Nature / Scenic Walk</div>
+    <div class="combo-recipe">Shadows → Cool Green-Teal · Mids → Natural · Highs → Warm Yellow-Green</div>
+    <div class="combo-desc">Push shadows toward cool green (15% toward left). Midtones near neutral or very slightly green (5%). Highlights toward warm yellow-green (12% upper-right). Boost green saturation in HSL +15. This enhances the natural quality of foliage, bark, and overcast sky without looking obviously manipulated.</div>
+  </div>
+</div>
+
+<div class="callout callout-p"><strong>How to develop your own signature look:</strong> Pick one of these recipes as your starting point. Apply it to 10 different photos. Adjust until it works across all of them without having to change it much. That consistency is your color signature — the thing that makes your work recognizable. Save it as a preset (see Bundles tab in Sell Your Work).</div>
+</div>
+
+<!-- GLOBAL COLOR TOOLS -->
+
+<div class="preset-panel" id="preset-cg-global">
+<div class="card card-c">
+  <h3>The Global Color Wheel — When to Use It</h3>
+  <p>The fourth wheel in Color Grading (the one you see when you click the single-circle icon, or the larger wheel in the middle when all three are visible) is the <strong>Global wheel</strong>. It shifts color across <em>all</em> tonal ranges simultaneously — shadows, midtones, and highlights all move the same direction.</p>
+  <p style="margin-top:.6rem;"><strong>When to use the Global wheel:</strong> When you want a monochromatic overall color cast — the whole image slightly warmer, the whole image slightly cooler, the whole image slightly tinted. It's less surgical than the three individual wheels but faster for overall mood shifts.</p>
+  <p style="margin-top:.6rem;"><strong>Typical use:</strong> Start with Global to establish the base temperature mood. Then use the three individual wheels to differentiate — make shadows pull one way, highlights another. Think of Global as your first big stroke and the three wheels as your detail work.</p>
+</div>
+
+<div class="card card-p">
+  <h3>Color Grading vs HSL — Which to Use When</h3>
+  <div class="preset-row"><span class="preset-key">Use HSL when</span><span class="preset-val">Fixing specific colors</span><span class="preset-why">You want to change one specific color in the image without affecting others. Sky too bright? Lower Blue Luminance in HSL. Skin too orange? Reduce Orange Saturation in HSL. Grass looks yellow instead of green? Shift Yellow Hue in HSL toward green. HSL is surgical and color-specific.</span></div>
+  <div class="preset-row"><span class="preset-key">Use Color Grading when</span><span class="preset-val">Creative mood / style</span><span class="preset-why">You want to intentionally shift the <em>feel</em> of the entire image by range (shadows vs highlights). Color Grading doesn't target specific colors — it targets tonal ranges regardless of hue. It's your creative storytelling tool.</span></div>
+  <div class="preset-row"><span class="preset-key">Use both together</span><span class="preset-val">Complete color pipeline</span><span class="preset-why">The typical workflow: WB correction → HSL for fixing specific color issues → Color Grading for creative mood. They layer on top of each other and work together.</span></div>
+  <div class="preset-row"><span class="preset-key">Vibrance/Saturation</span><span class="preset-val">Last, after all color work</span><span class="preset-why">Global saturation changes should come after you've done your color grading. Boosting saturation before grading amplifies your grade unpredictably.</span></div>
+</div>
+
+<div class="card card-b">
+  <h3>Tone Curve for Color — The Channel Curves</h3>
+  <p>In Lightroom's Tone Curve panel, click on the <strong>Point Curve</strong> button (small square icon) and look for a dropdown that says "RGB." Change it to <strong>Red, Green, or Blue</strong> to edit individual color channels as curves.</p>
+  <p style="margin-top:.6rem;"><strong>What this lets you do:</strong> Pulling the Blue channel's shadows down pushes shadows toward yellow/orange (removing blue from shadows). Pulling the Blue channel's highlights up pushes highlights toward blue. This is an older method of split toning that predates the Color Grading wheels — some editors prefer it for finer control.</p>
+  <p style="margin-top:.6rem;"><strong>Quick film-style trick with channel curves:</strong> In the Blue channel, pull the shadow endpoint up slightly (from 0 to about 15) — this lifts the blacks with a blue cast, creating a faded/film-print look. Very popular for moody urban shots. Pair with reduced Blacks in the main curve.</p>
+</div>
+</div>
+
+<!-- PRACTICE -->
+
+<div class="preset-panel" id="preset-cg-practice">
+<div class="card card-c"><h3>Color Grading Practice — Build Intuition Fast</h3>
+<div class="step-list">
+<div class="step-item"><div class="step-num">1</div><div class="step-body"><strong>The neutral sweep</strong><p>Open any photo. Drag the Shadows wheel slowly all the way around the color circle, watching the image change. Then reset to center. Do the same for Midtones, then Highlights. This is how you learn what each wheel actually does to your specific photo. 10 minutes of this builds more intuition than reading for an hour.</p></div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-body"><strong>Copy a grade from a photo you admire</strong><p>Find a photo with a color grade you like — a movie still, a photographer's work, anything. Try to reverse-engineer it using the wheels. What color are the shadows? What color are the highlights? Try to match it on one of your own photos. You'll probably fail the first time. That failure teaches you more than success.</p></div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-body"><strong>Apply one recipe to 5 very different photos</strong><p>Take the Cleveland Urban recipe from the Looks tab. Apply it to an architecture shot, a cat shot, a nature shot, a motion shot, and a low-light shot. Notice where it works naturally and where you have to fight it. This teaches you which looks are versatile vs subject-specific.</p></div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-body"><strong>Before/after toggle habit</strong><p>Use the backslash key (\) in Lightroom to toggle before/after. After every color grading session, toggle it 5 times slowly. Ask: does the grade serve the photo or is it just "doing something?" If you can't articulate why the grade improves it, it probably doesn't. Reset and try again with more intention.</p></div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-body"><strong>The 20% rule</strong><p>Whatever you think looks good, reduce every color grading adjustment by 20%. New color graders almost always over-grade because the effect looks exciting on screen. But viewed later on a phone or printed, over-graded images look garish. Your first instinct for "how much" is almost always too much.</p></div></div>
+</div></div>
+</div>
+
+</div><!-- end color grading section -->
+
+<!-- §10 MASKING -->
+
+<div class="section" id="masking">
+<div class="sec-title"><span class="hl-p">Masking</span> — Selective Editing</div>
+<div class="sec-sub">Every mask type explained · How to build masks · Combining masks · Real examples for your subjects</div>
+
+<div class="callout callout-p"><strong>What masking actually is:</strong> A mask is a way of telling Lightroom "apply this adjustment only to this specific part of the image." Without masks, every adjustment affects the whole photo. With masks, you can brighten just the subject's face, darken just the sky, sharpen just the cat's eyes, or add warmth only to the building and not the background. Masking is the difference between basic editing and professional editing.</div>
+
+<div class="preset-tabs">
+  <button class="preset-tab active" onclick="showPreset('mask-types')">Mask Types</button>
+  <button class="preset-tab" onclick="showPreset('mask-ai')">AI Masks (Select Subject etc)</button>
+  <button class="preset-tab" onclick="showPreset('mask-combine')">Combining Masks</button>
+  <button class="preset-tab" onclick="showPreset('mask-workflow')">Full Workflow</button>
+  <button class="preset-tab" onclick="showPreset('mask-subjects')">For Your Subjects</button>
+</div>
+
+<!-- MASK TYPES -->
+
+<div class="preset-panel active" id="preset-mask-types">
+<div class="card card-p"><h3>How to Open the Masking Panel</h3>
+<p>In Lightroom's Develop module, click the <strong>Masking icon</strong> in the toolbar below the histogram (it looks like a circle cut in half), or press <strong>Shift+W</strong>. A panel opens showing all available mask types. Click any type to start creating that mask. Once created, a mask appears in the mask list and you set your adjustments in the panel below.</p></div>
+
+<div class="mask-type-grid">
+  <div class="mask-card">
+    <div class="mask-icon">⬛</div>
+    <div class="mask-name">Linear Gradient</div>
+    <div class="mask-when">Sky darkening · Foreground lifting · Edge vignettes</div>
+    <div class="mask-desc">Creates a straight-line gradient across the frame. The adjustment fades smoothly from full strength to nothing. Drag from the area you want most affected toward the area you want least affected.<br><br>Drag from top to bottom to darken just the sky. Drag from bottom to top to lift just the foreground. Drag from the side to affect one side of a building.</div>
+    <div class="mask-tip">→ Best first mask to learn. Use it on every architectural shot with sky.</div>
+  </div>
+  <div class="mask-card">
+    <div class="mask-icon">⭕</div>
+    <div class="mask-name">Radial Gradient</div>
+    <div class="mask-when">Subject spotlight · Eye enhancement · Vignette control</div>
+    <div class="mask-desc">Creates an oval/elliptical gradient. By default, the adjustment applies <em>outside</em> the oval (like a vignette). Click "Invert" to apply it <em>inside</em> the oval instead (to spotlight your subject).<br><br>Draw an oval around Lincoln's face → Invert → boost Exposure +0.3, Shadows +20, Texture +15. The cat's face brightens while the background stays put. The feathered edge makes it invisible.</div>
+    <div class="mask-tip">→ Most useful mask for subjects. Every cat portrait benefits from one around the face.</div>
+  </div>
+  <div class="mask-card">
+    <div class="mask-icon">🖌️</div>
+    <div class="mask-name">Brush</div>
+    <div class="mask-when">Precise area edits · Sky, ground, object-specific</div>
+    <div class="mask-desc">Paint exactly where you want the adjustment with a brush. Control Size (scroll wheel or [ ] keys), Feather (how soft the edges are), Flow (how strong each stroke is), and Density (maximum strength cap).<br><br>Paint only the typewriter's keys → add Clarity +25, Texture +20. Paint only a shadow under a building → add Shadows +30. The brush gives you pixel-level control.</div>
+    <div class="mask-tip">→ Most flexible mask. Slow to use but most precise. Use for anything the other masks can't do cleanly.</div>
+  </div>
+  <div class="mask-card">
+    <div class="mask-icon">🎨</div>
+    <div class="mask-name">Color Range</div>
+    <div class="mask-when">Select sky by color · Isolate skin tones · Target specific hues</div>
+    <div class="mask-desc">Click a color in the image to create a mask that selects everything of similar color. The refinement slider controls how narrow or broad the color selection is.<br><br>Click the blue sky → the mask selects all the sky automatically → reduce Exposure -0.5 and add Blue Luminance -20 in that mask → the sky darkens without touching the building at all.</div>
+    <div class="mask-tip">→ Excellent for skies and any scene with distinct color separation between subject and background.</div>
+  </div>
+  <div class="mask-card">
+    <div class="mask-icon">💡</div>
+    <div class="mask-name">Luminance Range</div>
+    <div class="mask-when">Select shadows only · Protect highlights · Noise reduction in shadows only</div>
+    <div class="mask-desc">Creates a mask based on how bright or dark areas are. You set a luminance range with two sliders — the mask selects only pixels within that brightness range.<br><br>Set a dark luminance range → apply noise reduction only to the shadows (where it's needed) without softening the sharp bright areas. Or select only the highlights to add a slight warm tint to bright areas without affecting shadows.</div>
+    <div class="mask-tip">→ Most technical mask. Very powerful for targeted noise reduction on FZ20 low-light shots.</div>
+  </div>
+  <div class="mask-card">
+    <div class="mask-icon">🌊</div>
+    <div class="mask-name">Depth Range</div>
+    <div class="mask-when">Select by focus distance</div>
+    <div class="mask-desc">Available when your photo has depth map data (typically iPhone portrait mode photos or certain RAW files). Selects near or far elements based on their focus distance from the camera.<br><br>Less relevant for FZ20 JPEG files, which usually don't contain depth map data. You can ignore this mask type for now.</div>
+    <div class="mask-tip">→ Skip this for FZ20 JPEGs — not applicable.</div>
+  </div>
+</div>
+</div>
+
+<!-- AI MASKS -->
+
+<div class="preset-panel" id="preset-mask-ai">
+<div class="card card-c"><h3>AI-Powered Masks — Lightroom's Most Powerful Features</h3>
+<p>Lightroom's AI masking tools (available in Lightroom Classic 11+ and Lightroom CC) use machine learning to automatically detect and select specific elements. These are genuinely impressive and save enormous amounts of time.</p></div>
+
+<div class="mask-type-grid">
+  <div class="mask-card">
+    <div class="mask-icon">🧍</div>
+    <div class="mask-name">Select Subject</div>
+    <div class="mask-when">One click to isolate main subject</div>
+    <div class="mask-desc">Lightroom automatically detects and selects the main subject of the photo. Works remarkably well for cats, people, objects on a desk, and birds. Click it and the mask appears in seconds.<br><br><strong>For Lincoln or Batman:</strong> Click Select Subject → the cat is selected → boost Shadows +25, Texture +15, Clarity +10 — the cat is brightened and detailed while the background is untouched. This used to take 20 minutes of careful brushwork and now takes 5 seconds.</div>
+    <div class="mask-tip">→ Start here for almost every portrait/subject photo. Then refine with brush if needed.</div>
+  </div>
+  <div class="mask-card">
+    <div class="mask-icon">🌅</div>
+    <div class="mask-name">Select Sky</div>
+    <div class="mask-when">Automatic sky selection</div>
+    <div class="mask-desc">Detects and selects the sky automatically, even through tree branches and complex edges. One click.<br><br><strong>Workflow for architecture vs sky:</strong> Select Sky → reduce Exposure -0.7, add Highlights -40, shift Temp slightly cooler. This darkens and deepens the sky without touching the building at all. What used to require a careful linear gradient mask is now a single click.</div>
+    <div class="mask-tip">→ Use on every outdoor architectural and landscape shot. Near-perfect selection every time.</div>
+  </div>
+  <div class="mask-card">
+    <div class="mask-icon">🌿</div>
+    <div class="mask-name">Select Background</div>
+    <div class="mask-when">Everything except the subject</div>
+    <div class="mask-desc">The inverse of Select Subject — selects everything in the background while leaving the main subject unmasked.<br><br><strong>Use case:</strong> For typewriter shots where the desk background is distracting — Select Background → reduce Exposure -0.3, reduce Saturation -15, add slight blur via Texture -10. The typewriter pops forward while the background recedes without any manual masking.</div>
+    <div class="mask-tip">→ Use when you want to modify the background without touching the subject.</div>
+  </div>
+  <div class="mask-card">
+    <div class="mask-icon">👁️</div>
+    <div class="mask-name">People Masks (Face, Body, etc.)</div>
+    <div class="mask-when">Portrait-specific sub-selections</div>
+    <div class="mask-desc">When a person is detected, Lightroom can create sub-masks for specific body parts: Face Skin, Body Skin, Eyes, Lips, Teeth, Eyebrows, Hair. Each is selectable separately.<br><br><strong>Practical use:</strong> Select Eyes → boost Clarity +25, Exposure +0.2, Sharpness +15. Select Skin → add slight Smoothing (negative Texture -10) without affecting the eyes you just sharpened. Professional portrait retouching in under 2 minutes.</div>
+    <div class="mask-tip">→ Available when Lightroom detects a human subject. Doesn't work for cats (yet).</div>
+  </div>
+</div>
+
+<div class="callout callout-c"><strong>AI masks aren't perfect.</strong> Select Subject occasionally includes bits of background or misses parts of the subject — especially with complex edges like cat fur or tree branches against sky. Always check the mask by pressing <strong>O</strong> in Lightroom to show the colored overlay — red areas are masked. Use the Brush tool (Add or Subtract mode) to clean up any imperfect edges.</div>
+</div>
+
+<!-- COMBINING MASKS -->
+
+<div class="preset-panel" id="preset-mask-combine">
+<div class="card card-p"><h3>Combining Masks — Add, Subtract, Intersect</h3>
+<p>Masks can be combined with each other to create complex selections that no single mask type could achieve alone. This is where masking becomes genuinely powerful.</p></div>
+
+<div class="card card-b">
+  <h3>The Three Operations</h3>
+  <div class="intersect-row"><div class="intersect-op">ADD (+)</div><div class="intersect-desc"><strong>Expands</strong> the mask to include more area. If Select Sky missed a patch of sky behind a tree branch, Add a Brush stroke over that patch to include it in the existing mask. Use the "Add" button that appears when you click an existing mask.</div></div>
+  <div class="intersect-row"><div class="intersect-op">SUBTRACT (−)</div><div class="intersect-desc"><strong>Removes</strong> areas from the mask. If Select Subject accidentally included part of the background, Subtract a Brush stroke over that area to remove it from the selection. Critical for cleaning up imperfect AI masks.</div></div>
+  <div class="intersect-row"><div class="intersect-op">INTERSECT (∩)</div><div class="intersect-desc"><strong>Keeps only the overlap</strong> of two masks. Intersect is the most powerful combination. Example: Create a Select Subject mask (selects the cat) → Intersect with a Luminance Range set to dark tones → the resulting mask selects only the <em>dark areas within the cat</em>. You can then boost just the shadow detail in the fur without brightening the already-bright areas of the cat.</div></div>
+</div>
+
+<div class="card card-c">
+  <h3>Practical Combination Examples</h3>
+  <div class="preset-row"><span class="preset-key">Sky + not building</span><span class="preset-val">Select Sky → Subtract brush on building edges</span><span class="preset-why">When the sky mask bleeds onto the top of a building, subtract a brush stroke along the roofline to clean the edge. Then darken the sky alone perfectly.</span></div>
+  <div class="preset-row"><span class="preset-key">Cat fur detail only</span><span class="preset-val">Select Subject → Intersect Luminance Range (dark)</span><span class="preset-why">Selects only the dark shadow areas within the cat's silhouette. Lift Shadows +30 and add Texture +20 to reveal fur detail in the darkest areas without brightening the cat's face or already-visible fur.</span></div>
+  <div class="preset-row"><span class="preset-key">Bright sky + keep sun</span><span class="preset-val">Select Sky → Subtract Luminance Range (very bright)</span><span class="preset-why">Select sky to darken it, but subtract a luminance range mask of the very brightest areas to protect the sun itself from going dark. The sky darkens beautifully while the sun stays bright.</span></div>
+  <div class="preset-row"><span class="preset-key">Architecture shadows only</span><span class="preset-val">Select Subject (building) → Intersect Luminance Range (dark)</span><span class="preset-why">Selects only the shadowed areas of the building. Lift Shadows +35 to reveal brick/stone detail in shadow. The sunlit face of the building is protected from overexposure.</span></div>
+  <div class="preset-row"><span class="preset-key">Typewriter + no keys</span><span class="preset-val">Select Subject → Subtract Color Range (key color)</span><span class="preset-why">Select the whole typewriter, then subtract the specific color of the keys to edit only the metal body without changing the key tops. Allows independent editing of each element.</span></div>
+</div>
+</div>
+
+<!-- FULL WORKFLOW -->
+
+<div class="preset-panel" id="preset-mask-workflow">
+<div class="card card-c"><h3>Complete Masking Workflow — Step by Step</h3>
+<div class="step-list">
+<div class="step-item"><div class="step-num">1</div><div class="step-body"><strong>Always finish global edits first</strong><p>Complete all your Light panel (exposure, contrast, shadows, highlights), Color/WB, and Color Grading work before opening the Masking panel. Masks are the final refinement layer — if you change global settings after creating masks, your masks may need to be re-evaluated.</p></div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-body"><strong>Open Masking panel (Shift+W)</strong><p>Click "Create New Mask." Choose your mask type based on what you're trying to isolate. For most shots, start with Select Subject or Select Sky — the AI tools are accurate and fast. For more complex selections, use Linear/Radial Gradient or Brush.</p></div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-body"><strong>Check the mask overlay (press O)</strong><p>Press O to toggle the red overlay showing exactly what's masked. Zoom into edges. Check for areas that should be included but aren't (or shouldn't be included but are). Use Add/Subtract brush to clean up imperfect edges.</p></div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-body"><strong>Apply your adjustment to the mask</strong><p>With the mask selected in the list, the adjustment panel below becomes active. Only adjust what you actually need — don't touch every slider. Typical mask adjustments are 1–3 sliders maximum. More than that usually means you need a different approach.</p></div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-body"><strong>Duplicate and invert for the opposite</strong><p>Right-click any mask in the list → "Duplicate Mask" → then click the three dots on the duplicate → "Invert Mask." Now you have two masks covering opposite areas of the frame. Apply complementary adjustments — what you did to the sky, reverse the direction for the ground. Fast way to balance a photo.</p></div></div>
+<div class="step-item"><div class="step-num">6</div><div class="step-body"><strong>Keep your mask list organized</strong><p>Double-click any mask in the list to rename it ("Sky Darken," "Cat Face Lift," "Building Shadow Detail"). When you have 4–6 masks on one photo, named masks are the only way to know what you're editing without toggling each one on and off.</p></div></div>
+</div></div>
+
+<div class="callout callout-w"><strong>Common masking mistakes:</strong> (1) Masking before global edits are done — change your exposure after and your masks are fighting your global work. (2) Using too many masks — if you need 8+ masks, you probably over-corrected something globally and are now compensating everywhere. Fix the global edit first. (3) Over-feathering brushes — a brush with 100% feather creates invisible transitions but also means the adjustment slowly fades and never fully applies anywhere. Use 60–80% feather for most work.</div>
+</div>
+
+<!-- FOR YOUR SUBJECTS -->
+
+<div class="preset-panel" id="preset-mask-subjects">
+<div class="card card-p"><h3>Masking Recipes — For Each of Your Subjects</h3></div>
+
+<div class="card card-c"><h3>Architecture & Buildings</h3>
+<div class="preset-row"><span class="preset-key">Sky control</span><span class="preset-val">Select Sky → Exp -0.5, Highlights -40, Temp -100</span><span class="preset-why">AI selects sky perfectly. Darken it, recover any blown highlights, and cool the tone slightly for drama. Do this on every outdoor architecture shot.</span></div>
+<div class="preset-row"><span class="preset-key">Building shadow detail</span><span class="preset-val">Linear Gradient (bottom up) → Shadows +25, Clarity +10</span><span class="preset-why">Lift the lower/shadowed parts of the building without brightening the sky. Gradient ensures the adjustment fades naturally.</span></div>
+<div class="preset-row"><span class="preset-key">Window glow</span><span class="preset-val">Radial Gradient on lit windows → Temp +200, Exp +0.3</span><span class="preset-why">Warm up and brighten just the windows of a building to make interior light feel more inviting and alive.</span></div>
+</div>
+
+<div class="card card-p"><h3>Lincoln & Batman — Black Cats</h3>
+<div class="preset-row"><span class="preset-key">Subject isolation</span><span class="preset-val">Select Subject → Shadows +25, Texture +15, Color NR +15</span><span class="preset-why">AI selects the cat cleanly. Lift fur detail, add texture, and reduce the shadow noise that shows in black fur on the FZ20 CCD — all without affecting the background.</span></div>
+<div class="preset-row"><span class="preset-key">Eye enhancement</span><span class="preset-val">Brush (small, 60% feather) on each eye → Clarity +25, Exp +0.2, Sharpness +20</span><span class="preset-why">Paint carefully over each eye. The clarity and sharpness make the eyes feel alive. This is the single most impactful mask you can apply to a cat portrait.</span></div>
+<div class="preset-row"><span class="preset-key">Background separation</span><span class="preset-val">Select Background → Exp -0.3, Sat -15, Clarity -10</span><span class="preset-why">Slightly darken, desaturate, and soften the background to push it away from the cat visually. The cat feels more three-dimensional and present.</span></div>
+<div class="preset-row"><span class="preset-key">Fur shadow detail</span><span class="preset-val">Select Subject → Intersect Luminance Range (dark) → Shadows +35</span><span class="preset-why">The combination mask targets only the darkest areas of the cat's fur — lifting hidden detail without blowing out the parts that are already visible.</span></div>
+</div>
+
+<div class="card card-b"><h3>Typewriter & Objects</h3>
+<div class="preset-row"><span class="preset-key">Object separation</span><span class="preset-val">Select Subject → Clarity +15, Texture +20, Contrast +10</span><span class="preset-why">Add crispness and texture to the typewriter alone. The desk and background stay as-is. Makes the object feel physically present and tactile.</span></div>
+<div class="preset-row"><span class="preset-key">Background fade</span><span class="preset-val">Select Background → Exp -0.4, Sat -20</span><span class="preset-why">Slightly darken and desaturate whatever's behind the typewriter to make it feel more like a dark studio background, even if you shot it on your regular desk.</span></div>
+<div class="preset-row"><span class="preset-key">Single light emphasis</span><span class="preset-val">Radial Gradient on light source side → Temp +150, Exp +0.2</span><span class="preset-why">If one side of the typewriter is lit by a lamp, strengthen that lighting with a warm radial gradient. Makes the single-light setup feel more intentional and dramatic.</span></div>
+</div>
+
+<div class="card card-g"><h3>Nature & Scenic</h3>
+<div class="preset-row"><span class="preset-key">Sky vs foreground</span><span class="preset-val">Select Sky → darken. Linear Gradient (ground up) → lift Shadows</span><span class="preset-why">Two masks balancing the exposure range between a bright sky and a darker foreground. This is the most common problem in landscape shots and two masks solve it completely.</span></div>
+<div class="preset-row"><span class="preset-key">Dead tree against sunset</span><span class="preset-val">Color Range on sky → darken sky. Brush on tree branches → Clarity +20, Contrast +15</span><span class="preset-why">Darken the sky to saturate its color. Brush along the tree silhouette to add clarity and contrast to the tree's edges, making the silhouette crisp against the sky. This is exactly what would have improved your blurry-sunset shot if the blur had been an exposure issue instead of camera shake.</span></div>
+<div class="preset-row"><span class="preset-key">Foreground texture</span><span class="preset-val">Linear Gradient (top down) → Texture +15, Clarity +10 on just the ground</span><span class="preset-why">Add texture and clarity to grass, leaves, or ground texture in the foreground while keeping the sky smooth. Reversed gradient from the sky one.</span></div>
+</div>
+</div>
+
+</div><!-- end masking section -->
+
+<!-- §11 SELL YOUR WORK -->
+
 <div class="section" id="shop">
 <div class="sec-title">Sell Your <span class="hl-c">Work</span> — $0 Budget</div>
 <div class="sec-sub">Build a photo shop from scratch · Pricing strategy · Bundles · Platforms · FZ20-specific advice</div>
@@ -1140,5 +1620,6 @@ function toggleWeek(header){
   btn.textContent=isOpen?'▼ expand':'▲ collapse';
 }
 </script>
+
 </body>
 </html>
