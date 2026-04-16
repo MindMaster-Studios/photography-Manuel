@@ -170,10 +170,10 @@ main{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:2rem 1.5r
 .preset-tab.active{background:rgba(34,211,238,.12);color:var(--cyan);border-color:var(--cyan);}
 .preset-panel{display:none;}
 .preset-panel.active{display:block;animation:fadeIn .2s ease;}
-.preset-row{display:flex;align-items:baseline;gap:.9rem;padding:.75rem 0;border-bottom:1px solid var(--border);}
+.preset-row{display:grid;grid-template-columns:110px 125px 1fr;gap:.7rem;padding:.75rem 0;border-bottom:1px solid var(--border);align-items:start;}
 .preset-row:last-child{border-bottom:none;}
-.preset-key{font-family:'Space Mono',Courier,'Courier New',monospace;font-size:.62rem;color:var(--dim);min-width:115px;text-transform:uppercase;letter-spacing:.06em;flex-shrink:0;}
-.preset-val{font-weight:700;color:var(--cyan);min-width:130px;font-family:'Space Mono',Courier,'Courier New',monospace;font-size:.75rem;flex-shrink:0;}
+.preset-key{font-family:'Space Mono',Courier,'Courier New',monospace;font-size:.62rem;color:var(--dim);text-transform:uppercase;letter-spacing:.06em;}
+.preset-val{font-weight:700;color:var(--cyan);font-family:'Space Mono',Courier,'Courier New',monospace;font-size:.73rem;word-break:break-word;}
 .preset-why{font-size:.77rem;color:var(--text);line-height:1.55;}
 /* CHEAT */
 .cheat-hero{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:2rem;margin-bottom:1.5rem;position:relative;overflow:hidden;}
@@ -230,15 +230,72 @@ main{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:2rem 1.5r
 .mistake-content .wrong{font-size:.79rem;color:var(--red);margin-bottom:.35rem;line-height:1.55;}
 .mistake-content .fix{font-size:.79rem;color:var(--green);line-height:1.6;}
 footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'Space Mono',Courier,'Courier New',monospace;font-size:.59rem;color:var(--dim);border-top:1px solid var(--border);letter-spacing:.1em;}
-@media(max-width:620px){
-  .settings-grid,.scale-bars,.qr-grid{grid-template-columns:1fr 1fr;}
+@media(max-width:680px){
+  main{padding:1.2rem 1rem 4rem;}
+  .settings-grid{grid-template-columns:1fr;}
+  .scale-bars{grid-template-columns:1fr;}
+  .qr-grid{grid-template-columns:1fr 1fr;}
   .day-row{grid-template-columns:52px 1fr;}
   .day-drill{grid-column:2;}
   .triangle-viz{flex-direction:column;}
+  /* preset-rows stack on mobile */
+  .preset-row{grid-template-columns:1fr;gap:.25rem;padding:.85rem 0;}
+  .preset-key{font-size:.58rem;}
+  .preset-val{font-size:.8rem;color:var(--cyan);}
+  .preset-why{padding-left:.5rem;border-left:2px solid var(--border);}
+  /* scenario table scroll */
+  .scenario-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;}
+  .scenario-table td,.scenario-table th{white-space:nowrap;}
+  /* cheat SVG */
+  .tri-svg-wrap svg{max-width:100%;}
+  .sec-title{font-size:1.3rem;}
+  header h1{font-size:1.8rem;}
+  .card{padding:1.1rem;}
+  .callout{padding:1rem 1.1rem;}
+  .mode-grid{grid-template-columns:1fr 1fr;}
+  /* shop grid */
+  .shop-grid{grid-template-columns:1fr!important;}
+  .price-grid{grid-template-columns:1fr!important;}
+  /* tables in shop */
+  .shop-table{display:block;overflow-x:auto;}
 }
-@media(max-width:400px){
-  .settings-grid,.scale-bars,.qr-grid{grid-template-columns:1fr;}
+@media(max-width:420px){
+  .qr-grid{grid-template-columns:1fr;}
+  .mode-grid{grid-template-columns:1fr;}
+  .hdr-badges{gap:.3rem;}
+  .hdr-badge{font-size:.5rem;padding:.2rem .5rem;}
+  nav button{padding:.75rem .7rem;font-size:.54rem;}
 }
+/* SHOP SECTION */
+.shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.2rem 0;}
+.shop-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.2rem;position:relative;overflow:hidden;}
+.shop-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);}
+.shop-card-icon{font-size:1.6rem;margin-bottom:.6rem;}
+.shop-card-title{font-weight:800;font-size:.9rem;color:var(--white);margin-bottom:.3rem;}
+.shop-card-sub{font-size:.75rem;color:var(--dim);line-height:1.5;}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.2rem 0;}
+.price-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:1.3rem;text-align:center;position:relative;}
+.price-card.featured{border-color:var(--cyan);background:rgba(34,211,238,.05);}
+.price-card.featured::after{content:'RECOMMENDED';position:absolute;top:-1px;left:50%;transform:translateX(-50%);font-family:'Space Mono',Courier,monospace;font-size:.5rem;letter-spacing:.12em;background:var(--cyan);color:var(--bg);padding:.2rem .6rem;border-radius:0 0 4px 4px;}
+.price-amount{font-family:'Space Mono',Courier,monospace;font-size:1.6rem;font-weight:700;color:var(--cyan);margin-bottom:.2rem;}
+.price-label{font-family:'Space Mono',Courier,monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin-bottom:.7rem;}
+.price-desc{font-size:.77rem;color:var(--text);line-height:1.6;}
+.shop-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.79rem;}
+.shop-table th{background:var(--bg3);font-family:'Space Mono',Courier,monospace;font-size:.55rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);padding:.6rem .8rem;border-bottom:1px solid var(--border);text-align:left;}
+.shop-table td{padding:.6rem .8rem;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top;}
+.shop-table tr:hover td{background:rgba(34,211,238,.02);}
+.shop-table .t-name{font-weight:700;color:var(--white);}
+.shop-table .t-free{color:var(--green);font-family:'Space Mono',Courier,monospace;font-size:.72rem;}
+.shop-table .t-paid{color:var(--gold);font-family:'Space Mono',Courier,monospace;font-size:.72rem;}
+.shop-table .t-note{color:var(--dim);font-size:.72rem;}
+.step-list{counter-reset:steps;margin:1rem 0;}
+.step-item{display:flex;gap:1rem;margin-bottom:1rem;align-items:flex-start;}
+.step-num{background:var(--cyan);color:var(--bg);font-family:'Space Mono',Courier,monospace;font-size:.7rem;font-weight:700;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.step-num.purple{background:var(--purple);}
+.step-num.gold{background:var(--gold);}
+.step-body{flex:1;}
+.step-body strong{font-size:.88rem;color:var(--white);display:block;margin-bottom:.25rem;}
+.step-body p{font-size:.79rem;color:var(--text);line-height:1.65;}
 </style>
 </head>
 <body>
@@ -268,6 +325,7 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
   <button onclick="showSection('plan',this)">⑥ 30-Day Plan</button>
   <button onclick="showSection('mistakes',this)">⑦ Mistakes</button>
   <button onclick="showSection('lightroom',this)">⑧ Lightroom</button>
+  <button onclick="showSection('shop',this)">⑨ Sell Your Work</button>
 </nav>
 
 <main>
@@ -908,7 +966,152 @@ footer{position:relative;z-index:1;text-align:center;padding:2rem;font-family:'S
 </div><!-- end lightroom section -->
 
 
-<footer>FZ20 Photography Masterclass · Cleveland / Chicago · Architecture · Cats · Nature · Objects · Motion · People · 30-Day Program</footer>
+
+<!-- §9 SELL YOUR WORK -->
+<div class="section" id="shop">
+<div class="sec-title">Sell Your <span class="hl-c">Work</span> — $0 Budget</div>
+<div class="sec-sub">Build a photo shop from scratch · Pricing strategy · Bundles · Platforms · FZ20-specific advice</div>
+
+<div class="callout callout-c"><strong>Reality check first:</strong> Selling photography downloads is genuinely achievable with no upfront cost. The barrier to entry is zero dollars. The challenge is building an audience and convincing strangers your work is worth paying for. This section covers the complete path — where to sell, how to price, what to bundle, and how to make your FZ20 shots commercially viable.</div>
+
+<div class="preset-tabs">
+  <button class="preset-tab active" onclick="showPreset('shop-platforms')">Platforms</button>
+  <button class="preset-tab" onclick="showPreset('shop-pricing')">Pricing</button>
+  <button class="preset-tab" onclick="showPreset('shop-bundles')">Bundles</button>
+  <button class="preset-tab" onclick="showPreset('shop-products')">What to Sell</button>
+  <button class="preset-tab" onclick="showPreset('shop-marketing')">Getting Buyers</button>
+  <button class="preset-tab" onclick="showPreset('shop-fz20')">FZ20 Viability</button>
+  <button class="preset-tab" onclick="showPreset('shop-roadmap')">90-Day Roadmap</button>
+</div>
+
+<div class="preset-panel active" id="preset-shop-platforms">
+<div class="card card-c"><h3>Where to Sell — $0 Setup Platforms <span class="badge badge-c">ALL FREE TO START</span></h3>
+<table class="shop-table">
+<tr><th>Platform</th><th>Cost</th><th>Best For</th><th>Their Cut</th><th>Verdict</th></tr>
+<tr><td class="t-name">Ko-fi</td><td class="t-free">Free (0% fees)</td><td>Digital downloads, tips, commissions</td><td class="t-note">0% on free plan — Ko-fi takes nothing</td><td class="t-note">Best free option. Zero fees means every dollar is yours. Set up in 20 minutes.</td></tr>
+<tr><td class="t-name">Gumroad</td><td class="t-free">Free</td><td>Digital downloads, photo packs, presets</td><td class="t-note">10% flat per sale</td><td class="t-note">Simple, proven. Great for presets + bundles. Direct link selling.</td></tr>
+<tr><td class="t-name">Payhip</td><td class="t-free">Free</td><td>Digital downloads, photo packs</td><td class="t-note">5% per transaction</td><td class="t-note">Good Gumroad alternative. Clean storefront. Lower fees.</td></tr>
+<tr><td class="t-name">Etsy</td><td class="t-free">$0.20/listing</td><td>Digital downloads, print-on-demand</td><td class="t-note">6.5% + $0.20 listing</td><td class="t-note">Huge built-in audience actively searching for urban photography. Worth the tiny listing fee.</td></tr>
+<tr><td class="t-name">Creative Market</td><td class="t-free">Free to list</td><td>Lightroom presets, photo packs for designers</td><td class="t-note">40% platform cut</td><td class="t-note">High cut but high-intent buyers. Preset packs sell well here.</td></tr>
+<tr><td class="t-name">Adobe / Shutterstock Stock</td><td class="t-free">Free to join</td><td>Stock photo licensing</td><td class="t-note">Platform keeps 85%+</td><td class="t-note">Passive but very slow and very low pay per image. Long-term play only.</td></tr>
+</table></div>
+<div class="callout callout-p"><strong>Recommendation: Start with Ko-fi.</strong> Zero fees means every dollar goes directly to you. Set up a Ko-fi shop in 20 minutes, upload your first product, share the link. Once you have momentum, Etsy is the next move — people actively search there for urban photography and Lightroom presets.</div>
+<div class="card card-p"><h3>Setting Up Ko-fi — Step by Step</h3>
+<div class="step-list">
+<div class="step-item"><div class="step-num">1</div><div class="step-body"><strong>Create account at ko-fi.com</strong><p>Sign up free. Set your display name and a short bio mentioning urban/architectural photography, Cleveland, and your aesthetic (warm tones, motion, cats). This is your brand statement.</p></div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-body"><strong>Enable the Shop feature</strong><p>Settings → Shop → enable it → choose "Digital Items." This is where your downloads live.</p></div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-body"><strong>Connect Stripe or PayPal</strong><p>Ko-fi requires one to receive payments. Both free to set up. PayPal is easiest if you already have an account.</p></div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-body"><strong>Upload your first product</strong><p>Add a digital item. Upload a ZIP of your photos. Write a compelling title and description. Add a strong cover image. Set your price.</p></div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-body"><strong>Put the link everywhere</strong><p>Instagram bio, every photo caption you post, Reddit profile. The shop only works if people can find it.</p></div></div>
+</div></div>
+</div>
+
+<div class="preset-panel" id="preset-shop-pricing">
+<div class="card card-c"><h3>Pricing Strategy — How to Think About It</h3>
+<p><strong>Price based on value to the buyer, not effort by you.</strong> A buyer doesn't care how long you spent shooting. They care what the photo does for them — decorates their wall, improves their blog, gives them a preset they'll use forever.</p></div>
+<div class="price-grid">
+<div class="price-card"><div class="price-amount">$1–3</div><div class="price-label">Single Digital Download</div><div class="price-desc">One photo, wallpaper resolution. Entry-level price. Gets people in the door. Good for building transaction history and early reviews.</div></div>
+<div class="price-card featured"><div class="price-amount">$5–12</div><div class="price-label">Photo Pack (5–15 images)</div><div class="price-desc">Themed collection — your best revenue product. Feels like a deal to the buyer, better per-sale value for you. Cleveland urban, motion, cats, etc.</div></div>
+<div class="price-card"><div class="price-amount">$8–20</div><div class="price-label">Lightroom Preset Pack</div><div class="price-desc">Your editing style packaged as presets others apply with one click. High perceived value. Zero marginal cost per sale once created.</div></div>
+</div>
+<div class="card card-g"><h3>Pricing Psychology — What Actually Works</h3>
+<div class="preset-row"><span class="preset-key">Anchor pricing</span><span class="preset-val">$15 → sale $9</span><span class="preset-why">Show a crossed-out "was" price. Even if you never sold at the higher price, this signals value and creates urgency. Most platforms support this natively.</span></div>
+<div class="preset-row"><span class="preset-key">Tiered options</span><span class="preset-val">Good / Better / Best</span><span class="preset-why">Offer 3 versions (5 photos / 15 photos / 30 photos + presets). The middle tier almost always outsells both others — buyers anchor to the expensive tier and choose the middle as a "deal."</span></div>
+<div class="preset-row"><span class="preset-key">Bundle discount</span><span class="preset-val">20–40% off bundles</span><span class="preset-why">If 10 photos would be $30 individually ($3 each), price the bundle at $9–12. The 60–70% discount is compelling. Buyers feel smart. You get a bigger per-transaction sale.</span></div>
+<div class="preset-row"><span class="preset-key">Free lead magnet</span><span class="preset-val">1 free photo download</span><span class="preset-why">Offer 1 high-quality free download. Gets people onto your shop page and builds trust. Someone who's already downloaded something from you is far more likely to buy.</span></div>
+</div>
+<div class="callout callout-w"><strong>Don't undercharge yourself into obscurity.</strong> At $1/photo you need 1,000 sales to make $1,000. At $10/pack you need 100. A well-edited urban architecture pack from someone developing a real style is worth more than a $1 stock photo. Price with confidence.</div>
+</div>
+
+<div class="preset-panel" id="preset-shop-bundles">
+<div class="card card-p"><h3>Bundle Ideas — Specific to Your Work</h3>
+<p>Bundles raise average order value and make buyers feel they're getting a deal. The key: bundles must be <strong>themed</strong>. A random assortment of 10 photos is less valuable than 10 photos that tell a coherent visual story.</p></div>
+<div class="shop-grid">
+<div class="shop-card"><div class="shop-card-icon">🏙️</div><div class="shop-card-title">Cleveland Urban Pack</div><div class="shop-card-sub">10–15 architecture + skyline shots. Target: Cleveland locals, Ohio pride, designers needing urban backgrounds. Price: $8–12.</div></div>
+<div class="shop-card"><div class="shop-card-icon">🚂</div><div class="shop-card-title">Motion &amp; Transit Pack</div><div class="shop-card-sub">Train shots, motion blur, L-rail. Great for blog headers, editorial use, transit enthusiasts. 8–12 images. Price: $7–10.</div></div>
+<div class="shop-card"><div class="shop-card-icon">🐈‍⬛</div><div class="shop-card-title">Black Cat Portrait Series</div><div class="shop-card-sub">Lincoln and/or Batman, well-edited. Huge niche market — cat lovers buy prints and digital art constantly. 5–10 photos. Price: $6–10.</div></div>
+<div class="shop-card"><div class="shop-card-icon">🌅</div><div class="shop-card-title">Golden Hour &amp; Dusk Pack</div><div class="shop-card-sub">Warm-toned sunsets, blue hour skylines. Very shareable. Works as wallpapers and blog headers. 8–12 images. Price: $7–10.</div></div>
+<div class="shop-card"><div class="shop-card-icon">🌿</div><div class="shop-card-title">Nature &amp; Texture Pack</div><div class="shop-card-sub">Macro nature, bark, leaves, dead trees, atmospheric scenic. Used by bloggers, designers, social media managers. 10–15 images. Price: $6–9.</div></div>
+<div class="shop-card"><div class="shop-card-icon">✨</div><div class="shop-card-title">Mega Bundle — Everything</div><div class="shop-card-sub">All packs combined. 50–80 images. 50–60% off the individual total. This is your flagship product. Price: $25–35.</div></div>
+</div>
+<div class="card card-b"><h3>Lightroom Preset Packs — Your Highest-Value Product</h3>
+<p>A Lightroom preset pack takes your personal editing style and packages it so others can apply it with one click. Zero cost to reproduce, sells indefinitely.</p>
+<div class="step-list" style="margin-top:.8rem;">
+<div class="step-item"><div class="step-num purple">1</div><div class="step-body"><strong>Edit a photo to your signature look</strong><p>Dial in your warm tones, contrast, clarity, and color grading. This edit becomes the preset.</p></div></div>
+<div class="step-item"><div class="step-num purple">2</div><div class="step-body"><strong>Save as a Preset in Lightroom</strong><p>Develop module → click + next to Presets → "Save Current Settings as Preset" → name it (e.g., "Liam — Urban Warm v1") → choose which settings to include.</p></div></div>
+<div class="step-item"><div class="step-num purple">3</div><div class="step-body"><strong>Export the .xmp file</strong><p>Right-click the preset → Export → saves as .xmp. ZIP it with 3–5 variations. This is what you sell.</p></div></div>
+<div class="step-item"><div class="step-num purple">4</div><div class="step-body"><strong>Create 3–5 variations</strong><p>A good preset pack has a family: standard, warm, cool, faded/matte, high contrast. Variations increase perceived value.</p></div></div>
+<div class="step-item"><div class="step-num purple">5</div><div class="step-body"><strong>Include before/after examples</strong><p>Your listing needs before/after photos showing the preset applied to real shots. Use your own FZ20 images — authenticity sells better than stock examples.</p></div></div>
+</div>
+<p style="font-size:.8rem;color:var(--text);margin-top:.8rem;"><strong style="color:var(--blue);">Preset pack pricing:</strong> 5 presets at $8–12 is the sweet spot. On Creative Market or Etsy, preset packs from new creators sell regularly at $12–18. Your urban/warm aesthetic has a clear, searchable audience.</p>
+</div>
+</div>
+
+<div class="preset-panel" id="preset-shop-products">
+<div class="card card-c"><h3>What Exactly to Sell — File Formats &amp; Requirements</h3>
+<div class="preset-row"><span class="preset-key">Digital Wallpapers</span><span class="preset-val">JPEG, 3840×2160</span><span class="preset-why">Resize your FZ20 shots to 4K using Lightroom's AI upscaling. Label by device: Desktop 4K, Phone (1080×1920). People pay for quality wallpapers.</span></div>
+<div class="preset-row"><span class="preset-key">Print-Ready Files</span><span class="preset-val">JPEG, 300 DPI, sRGB</span><span class="preset-why">FZ20 at 2560×1920px prints cleanly up to 8"×6" at 300 DPI. List the max print size clearly. Use Lightroom upscaling for slightly larger sizes.</span></div>
+<div class="preset-row"><span class="preset-key">Social Media Pack</span><span class="preset-val">JPEG, 2048px long edge</span><span class="preset-why">Sized for Instagram/blog headers with square, story, and landscape crops labeled. Bloggers and small businesses buy these constantly.</span></div>
+<div class="preset-row"><span class="preset-key">Lightroom Presets</span><span class="preset-val">.xmp files in ZIP</span><span class="preset-why">Your editing style as a product. High value, zero delivery cost per sale. See Bundles tab.</span></div>
+<div class="preset-row"><span class="preset-key">Print on Demand</span><span class="preset-val">SPOD / Printful + Etsy</span><span class="preset-why">No inventory, no upfront cost. Upload your photo, they print and ship. Connect to your Etsy shop. Lower margins but zero risk.</span></div>
+<div class="preset-row"><span class="preset-key">Commercial License Tier</span><span class="preset-val">5–10× personal price</span><span class="preset-why">Personal use (someone hangs it on their wall) vs commercial use (a company uses it in marketing). Charge significantly more for commercial. Both Ko-fi and Gumroad support multiple license tiers.</span></div>
+</div>
+<div class="callout callout-w"><strong>FZ20 resolution transparency:</strong> State pixel dimensions and maximum print size in every listing. "2560×1920px — recommended for prints up to 8×6" or digital use." Buyers appreciate honesty and it prevents refund requests.</div>
+<div class="card card-g"><h3>What Makes a Photo Commercially Sellable</h3>
+<div class="preset-row"><span class="preset-key">Clean backgrounds</span><span class="preset-val">Minimal clutter</span><span class="preset-why">Buyers use photos as backgrounds and headers. Simple architecture against clean sky → very sellable. Busy cluttered scene → harder to use commercially.</span></div>
+<div class="preset-row"><span class="preset-key">No identifiable faces</span><span class="preset-val">Or get model releases</span><span class="preset-why">Identifiable people require model releases for commercial use. Urban shots without faces (or distant, unidentifiable people) are much easier to sell without legal complexity.</span></div>
+<div class="preset-row"><span class="preset-key">No prominent logos</span><span class="preset-val">Or label "editorial only"</span><span class="preset-why">Photos featuring brand logos prominently can only be sold for editorial use. Be aware of this for street shots.</span></div>
+<div class="preset-row"><span class="preset-key">Consistent editing</span><span class="preset-val">Same look per pack</span><span class="preset-why">A pack where every image shares the same color grade and mood sells better than a mixed bag. Buyers want images that work together. Your Lightroom presets solve this — apply the same preset to every image in a pack.</span></div>
+</div>
+</div>
+
+<div class="preset-panel" id="preset-shop-marketing">
+<div class="card card-p"><h3>Getting Your First Buyers — $0 Marketing</h3>
+<div class="step-list">
+<div class="step-item"><div class="step-num">1</div><div class="step-body"><strong>Post consistently on Instagram/social with a clear aesthetic</strong><p>Every photo post is a free ad. Consistent editing (your presets), regular posting, shop link always in bio. "These are available in my shop" in captions converts. Don't just post — tell people what they can buy.</p></div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-body"><strong>Use niche hashtags, not big ones</strong><p>#photography is too competitive. Niche hashtags reach actual buyers: #clevelandphotography #urbantexture #architecturephotography #blackcatphoto #lightroompresets. Research what your target buyers follow and use those.</p></div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-body"><strong>Pinterest — massively underrated for photo sellers</strong><p>Pinterest drives long-tail search traffic for months and years. Create boards for each theme (Urban Architecture, Black Cat Photography, Cleveland Ohio). Pin your photos with links to your shop. A pin from today can bring buyers in two years.</p></div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-body"><strong>Etsy SEO — think like a search engine</strong><p>Etsy is a search engine. Your listing title, tags, and description need words buyers actually type. "Urban architecture digital download Cleveland Ohio moody blue tones" beats "My city photo." Research what's selling in your niche and reverse-engineer their titles.</p></div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-body"><strong>Give something free first</strong><p>A single high-quality free wallpaper download builds trust and drives people onto your page. "Free desktop wallpaper" posts consistently outperform "buy my stuff" posts for shop traffic. Reciprocity is real.</p></div></div>
+<div class="step-item"><div class="step-num">6</div><div class="step-body"><strong>Reddit niche communities — genuinely engage</strong><p>r/cleveland, r/urbexphotography, r/itookapicture, r/Lightroom (for presets). Share your work as real posts — not ads. Mention your shop when relevant. Read community rules first. Authentic engagement converts far better than self-promotion.</p></div></div>
+</div></div>
+<div class="card card-b"><h3>Building a Recognizable Style — The Long Game</h3>
+<p>Photographers who sell consistently don't just sell photos — they sell a <strong>recognizable aesthetic</strong>. Your current instincts (warm tones, urban geometry, motion, intimate cat work) are already the seeds of a real style. Lean into it hard. Edit everything consistently.</p>
+<p style="margin-top:.6rem;"><strong>How to accelerate this:</strong> Pick 3 Lightroom presets as your permanent public look. Apply them to everything you post. Within 30–50 posts, people will recognize your work before they see your name. That recognition is what makes someone pay for something they could find cheaper elsewhere.</p>
+</div>
+</div>
+
+<div class="preset-panel" id="preset-shop-fz20">
+<div class="card card-c"><h3>Can You Actually Sell FZ20 Photos? Honest Assessment.</h3>
+<div class="callout callout-w" style="margin-bottom:1rem;"><strong>Honest answer: Yes — with the right products and transparency.</strong> The FZ20's 5MP is below what stock agencies want (15MP+). But for direct digital downloads, wallpapers, presets, and print sizes up to 8×6", it is completely viable. The Leica lens, constant f/2.8, and OIS also produce genuinely sharp, clean images in good light that compete on quality regardless of resolution.</div>
+<div class="preset-row"><span class="preset-key">✓ Works great</span><span class="preset-val">Digital wallpapers</span><span class="preset-why">2560×1920 covers 1080p natively and upscales reasonably to 1440p. Wallpaper packs are a legitimate product at this resolution.</span></div>
+<div class="preset-row"><span class="preset-key">✓ Works great</span><span class="preset-val">Small/medium prints</span><span class="preset-why">8×6" native at 300 DPI. With Lightroom AI upscaling, 11×8" is achievable. State dimensions clearly in listings.</span></div>
+<div class="preset-row"><span class="preset-key">✓ Works great</span><span class="preset-val">Lightroom presets</span><span class="preset-why">Resolution completely irrelevant. Presets are .xmp settings files. Your editing style has commercial value regardless of what camera produced the sample images.</span></div>
+<div class="preset-row"><span class="preset-key">✓ Works great</span><span class="preset-val">Social media packs</span><span class="preset-why">2048px is perfect for web/social. Bloggers and small businesses don't need 4K files — they need good images at web resolution.</span></div>
+<div class="preset-row"><span class="preset-key">⚠ Harder</span><span class="preset-val">Major stock agencies</span><span class="preset-why">Shutterstock, Getty, Adobe Stock require higher resolution and volume. Not your primary channel right now.</span></div>
+<div class="preset-row"><span class="preset-key">⚠ Harder</span><span class="preset-val">Large-format prints</span><span class="preset-why">Above 16×12" will look soft. Print-on-demand works within limits — be transparent about max recommended sizes.</span></div>
+<div class="preset-row"><span class="preset-key">→ Upgrade when</span><span class="preset-val">Skill is no longer the limit</span><span class="preset-why">Don't upgrade until the FZ20 is genuinely holding you back and you're selling consistently. Right now skill is the limiting factor, not megapixels. The FZ20 has produced exceptional work — use it fully first.</span></div>
+</div>
+</div>
+
+<div class="preset-panel" id="preset-shop-roadmap">
+<div class="card card-c"><h3>90-Day Shop Launch Roadmap</h3>
+<div class="step-list">
+<div class="step-item"><div class="step-num gold">M1</div><div class="step-body"><strong>Month 1 — Build the foundation</strong><p><strong>Week 1–2:</strong> Build a library of 50+ edited, portfolio-quality images from the 30-day program. Set up Ko-fi shop. Create your first product: a 10-image themed pack at $7–10.<br><strong>Week 3:</strong> Create a Lightroom preset pack (3–5 presets). List at $10–15.<br><strong>Week 4:</strong> Set up Etsy shop. List both products. Optimize titles and tags for search.</p></div></div>
+<div class="step-item"><div class="step-num gold">M2</div><div class="step-body"><strong>Month 2 — Build the audience</strong><p>Post 3–4 times/week on Instagram with consistent editing. Shop link in bio, mention it in captions. Start Pinterest — pin everything with shop link. Create your free lead magnet (1 wallpaper) and promote it. Engage genuinely in relevant Reddit communities.</p></div></div>
+<div class="step-item"><div class="step-num gold">M3</div><div class="step-body"><strong>Month 3 — Scale what's working</strong><p>Review what's gotten the most saves, shares, and shop visits. Make more of that. Add a second themed photo pack. Create a mega bundle (everything at a discount). Reply to every comment and DM — early buyers become loyal advocates who spread the word.</p></div></div>
+</div></div>
+<div class="card card-p"><h3>Realistic First-Year Expectations</h3>
+<p>Most new photo sellers make <strong>nothing for the first 1–3 months</strong> — and that's completely normal. The path to consistent sales is: post consistently → build audience → give value first → sell second. Don't measure success by month-one sales. Measure it by posting consistency, improvement rate, and products listed.</p>
+<p style="margin-top:.6rem;"><strong>Realistic benchmarks:</strong> Month 1–2: 0–5 sales (normal and fine). Month 3–6: 5–30 sales/month with consistent effort. Month 6–12: 30–100+ sales/month with a following and 3+ strong products.</p>
+<p style="margin-top:.6rem;"><strong>The skill → shop connection is direct:</strong> Every technique in this course increases your commercial potential. Better composition = more shareable = more followers = more buyers. Your Lightroom skills literally create your highest-value product (presets). This isn't separate from your photography journey — it's the natural extension of it.</p>
+</div>
+<div class="callout callout-c"><strong>The one thing that moves the needle most:</strong> Consistency over perfection. A slightly imperfect photo posted regularly beats a perfect photo posted once a month. Buyers follow people who show up. Ship it, learn from it, post the next one.</div>
+</div>
+
+</div><!-- end shop section -->
+
+<footer>FZ20 Photography Masterclass · Cleveland / Chicago · Architecture · Cats · Nature · Objects · Motion · People · 30-Day Program · Sell Your Work</footer>
 
 <script>
 function showSection(id,btn){
